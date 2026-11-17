@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hugging Face Resources | Tony's Training Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f4f6fb;
+      color: #1a1a2e;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8eaf0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(255,159,0,0.07);
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .nav-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #d97706;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6b7280;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: #d97706; }
+
+    .page-hero {
+      background: linear-gradient(135deg, #b45309 0%, #f59e0b 55%, #fbbf24 100%);
+      padding: 3rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .page-hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+    .page-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .page-hero p { color: rgba(255,255,255,0.92); font-size: 15px; font-weight: 600; max-width: 560px; }
+
+    .page-layout {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .page-content { min-width: 0; }
+    .page-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #e8eaf0;
+    }
+    .page-content h2:first-child { margin-top: 0; }
+    .page-content p { font-size: 15px; color: #374151; margin-bottom: 1rem; }
+
+    .link-card {
+      background: #fff;
+      border: 1px solid #e8eaf0;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .link-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    .link-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .link-body { flex: 1; min-width: 0; }
+    .link-body h3 { font-size: 15px; font-weight: 700; color: #1a1a2e; margin-bottom: 3px; }
+    .link-body p { font-size: 13px; color: #6b7280; margin: 0; line-height: 1.5; }
+    .link-arrow { font-size: 18px; color: #d97706; align-self: center; flex-shrink: 0; }
+
+    .tip {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: #78350f;
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tag-free    { background: #d4f5e2; color: #1a7a42; }
+    .tag-prompts { background: #ede9fe; color: #6b21a8; }
+    .tag-api     { background: #ddeeff; color: #1a5fa8; }
+    .tag-new     { background: #ffe0ec; color: #b5235e; }
+    .tag-os      { background: #fff0d4; color: #b36200; }
+
+    .page-sidebar { position: sticky; top: 78px; }
+    .sidebar-card {
+      background: #fff;
+      border: 1px solid #e8eaf0;
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar-card h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #d97706;
+      text-decoration: none;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.15s;
+    }
+    .quick-link:last-child { border-bottom: none; }
+    .quick-link:hover { color: #78350f; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 13px;
+      color: #9ca3af;
+      border-top: 1px solid #e8eaf0;
+      background: #fff;
+    }
+    footer a { color: #d97706; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 680px) {
+      .page-layout { grid-template-columns: 1fr; padding: 1.5rem 1rem 3rem; }
+      .page-sidebar { position: static; }
+      .page-hero { padding: 2rem 1rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">🤖 Tony's Training Hub</a>
+      <a href="index.html#courses" class="nav-back">← Back to Courses &amp; Academies</a>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-badge">🔗 Training Resource</div>
+      <h1>Hugging Face Resources</h1>
+      <p>The home of open-source AI — models, datasets, Spaces, and free courses on transformers, diffusion, NLP, agents, and reinforcement learning.</p>
+    </div>
+  </section>
+
+  <div class="page-layout">
+    <article class="page-content">
+
+      <p>Hugging Face is the GitHub of machine learning. It hosts hundreds of thousands of open-source models and datasets, along with free high-quality courses that are considered industry standard. If you want to understand how AI actually works — not just use it — this is where to go.</p>
+
+      <div class="tip">
+        <span>🤗</span>
+        <span><strong>Where to start:</strong> Absolute beginners should start with the free NLP or LLM Course. If you want to try models instantly, explore Spaces. For production, head to the Inference API or Transformers docs.</span>
+      </div>
+
+      <h2>Free Courses</h2>
+
+      <a href="https://huggingface.co/learn/llm-course" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#fff0d4;">🎓</div>
+        <div class="link-body">
+          <span class="tag tag-free">Free</span>
+          <h3>LLM Course</h3>
+          <p>A comprehensive, hands-on course covering LLMs, transformers, fine-tuning, and deployment — entirely free, with runnable notebooks and Hugging Face tools.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://huggingface.co/learn/agents-course" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#fff0d4;">🧠</div>
+        <div class="link-body">
+          <span class="tag tag-free">Free</span>
+          <h3>AI Agents Course</h3>
+          <p>Free course on building AI agents from scratch — covers agent loops, tool use, LangGraph, smolagents, and practical agentic patterns.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://huggingface.co/learn/deep-rl-course" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#fff0d4;">🎮</div>
+        <div class="link-body">
+          <span class="tag tag-free">Free</span>
+          <h3>Deep Reinforcement Learning Course</h3>
+          <p>From Q-learning to PPO to training agents in Unity and Godot — a classic, high-quality free course for anyone interested in RL.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <h2>Explore Models &amp; Datasets</h2>
+
+      <a href="https://huggingface.co/models" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#fff0d4;">🧩</div>
+        <div class="link-body">
+          <span class="tag tag-os">Open source</span>
+          <h3>Model Hub</h3>
+          <p>Browse 1M+ open-source models — Llama, Mistral, Qwen, Gemma, Stable Diffusion, Whisper, and everything else. Most are free to download and run locally.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://huggingface.co/spaces" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#fff0d4;">🚀</div>
+        <div class="link-body">
+          <span class="tag tag-free">Try instantly</span>
+          <h3>Spaces</h3>
+          <p>Thousands of interactive demos running in your browser — try new models, chat UIs, image generators, and agents without installing anything.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://huggingface.co/datasets" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#fff0d4;">📊</div>
+        <div class="link-body">
+          <span class="tag tag-os">Datasets</span>
+          <h3>Dataset Hub</h3>
+          <p>200k+ open datasets for training and evaluation — ready to load with a single line of Python via the <code>datasets</code> library.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <h2>Developer Docs &amp; Tools</h2>
+
+      <a href="https://huggingface.co/docs/transformers/index" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#ddeeff;">⚙️</div>
+        <div class="link-body">
+          <span class="tag tag-api">Library</span>
+          <h3>Transformers Documentation</h3>
+          <p>The flagship Hugging Face library — the standard way to load and run open-source models in Python. Works with PyTorch, TensorFlow and JAX.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://huggingface.co/docs/inference-providers" target="_blank" rel="noopener" class="link-card">
+        <div class="link-icon" style="background:#ddeeff;">☁️</div>
+        <div class="link-body">
+          <span class="tag tag-api">API</span>
+          <h3>Inference Providers</h3>
+          <p>Run open-source models in the cloud via a single API — serverless access to hundreds of models across providers, with a generous free tier.</p>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </article>
+
+    <aside class="page-sidebar">
+
+      <div class="sidebar-card">
+        <h4>Quick Links</h4>
+        <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="quick-link">🏠 Home</a>
+        <a href="https://huggingface.co/learn" target="_blank" rel="noopener noreferrer" class="quick-link">🎓 All Courses</a>
+        <a href="https://huggingface.co/models" target="_blank" rel="noopener noreferrer" class="quick-link">🧩 Model Hub</a>
+        <a href="https://huggingface.co/spaces" target="_blank" rel="noopener noreferrer" class="quick-link">🚀 Spaces</a>
+        <a href="https://huggingface.co/blog" target="_blank" rel="noopener noreferrer" class="quick-link">📰 Blog</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>About this resource</h4>
+        <p style="font-size:13px;color:#6b7280;line-height:1.6;">
+          <strong>Cost:</strong> Free — Pro plan optional<br>
+          <strong>Account needed:</strong> Optional (free)<br>
+          <strong>Best for:</strong> Open-source &amp; learners<br>
+          <strong>Updated:</strong> Daily
+        </p>
+      </div>
+
+      <div class="sidebar-card" style="background:linear-gradient(135deg,#fffbeb,#fff7ed);border-color:#fcd34d;">
+        <h4 style="color:#92400e;">Also see</h4>
+        <p style="font-size:13px;color:#374151;line-height:1.6;">Pair the Hugging Face <strong>LLM Course</strong> with the <strong>Getting Started with AI Agents</strong> guide in the How-To section to go from theory straight to building.</p>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer>
+    <p>Part of <a href="index.html">Tony's Training Hub</a> &mdash; built with ❤️ and Claude</p>
+  </footer>
+
+</body>
+</html>
