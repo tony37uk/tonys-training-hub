@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tony's Training Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --bg: #f6f7fb; --card: #ffffff; --ink: #141a2e; --ink-2: #2b3246; --muted: #474f68; --muted-2: #535b73;
+    --line: #e3e6ef; --line-2: #cfd4e0; --accent: #6d28d9; --accent-ink: #4c1d95; --accent-soft: #ede9fe; --ok: #16a34a;
+  }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; overflow-x: hidden; background: var(--bg); color: var(--ink); font-family: 'Nunito', system-ui, sans-serif; font-size: 15px; line-height: 1.45; }
+  a { color: #5b21b6; } a:hover { color: #3b0f86; }
+  button { font: inherit; }
+  :focus-visible { outline: 3px solid #a78bfa; outline-offset: 2px; border-radius: 8px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* Header */
+  .top { position: sticky; top: 0; z-index: 10; background: var(--card); border-bottom: 1px solid var(--line); }
+  .top-inner { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 12px 28px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px; white-space: nowrap; }
+  .logo:hover { color: var(--ink); }
+  .logo-mark { width: 34px; height: 34px; border-radius: 9px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; letter-spacing: .02em; }
+  .search { flex: 1 1 320px; max-width: 560px; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; border: 1px solid var(--line-2); border-radius: 12px; background: #f9fafc; }
+  .search:focus-within { border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px var(--accent-soft); }
+  .search input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; font: inherit; font-size: 15px; color: var(--ink); }
+  .search kbd { font-family: inherit; font-size: 12px; font-weight: 700; color: var(--muted-2); border: 1px solid #d5d9e4; border-radius: 6px; padding: 1px 7px; }
+  .top-right { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-left: auto; }
+  .progress { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: #3d4560; }
+  .bar { width: 120px; height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+  .bar > span { display: block; height: 100%; width: 0; background: var(--ok); transition: width .3s; }
+  .btn { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 800; font-size: 14px; text-decoration: none; white-space: nowrap; }
+  .btn:hover { background: #5b21b6; color: #fff; }
+
+  /* Layout */
+  .layout { max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; }
+  .side { flex: 1 1 240px; padding: 24px 16px 24px 24px; display: flex; flex-direction: column; gap: 22px; align-self: flex-start; position: sticky; top: 69px; }
+  .side h2 { margin: 0 0 6px 12px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); }
+  .side-list { display: flex; flex-direction: column; gap: 2px; }
+  .nav-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--ink-2); font-size: 14px; font-weight: 700; text-align: left; cursor: pointer; }
+  .nav-btn:hover { background: #eceef6; }
+  .nav-btn[aria-current="true"] { background: var(--accent-soft); color: var(--accent-ink); }
+  .nav-btn .n { font-size: 12px; font-weight: 700; color: var(--muted-2); }
+  .main { flex: 999 1 560px; min-width: 0; padding: 28px 28px 56px; }
+
+  .crumb { margin: 0 0 6px; font-size: 13px; font-weight: 700; color: var(--muted-2); }
+  .head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 18px; }
+  .head h1 { margin: 0 0 6px; font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: 700; line-height: 1.2; }
+  .head p { margin: 0; font-size: 15px; color: #3d4560; }
+  .count { margin: 0; font-size: 13px; font-weight: 700; color: var(--muted-2); white-space: nowrap; }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .pill { height: 36px; padding: 0 14px; border: 1px solid #d5d9e4; border-radius: 999px; background: #fff; color: var(--ink-2); font-size: 13px; font-weight: 700; cursor: pointer; }
+  .pill:hover { border-color: #a5adc2; }
+  .pill[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; transition: border-color .15s, box-shadow .15s; }
+  .row:hover { border-color: #c4b5fd; box-shadow: 0 4px 14px rgba(20,26,46,.06); }
+  .row.done { background: #f7fdf9; border-color: #bfe8cf; }
+  .row.done .title a { color: #5b6378; text-decoration: line-through; text-decoration-color: #9aa3b8; }
+  .check { width: 28px; height: 28px; flex: 0 0 28px; padding: 0; border-radius: 50%; border: 2px solid #c5cbda; background: #fff; color: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
+  .check::before { content: ''; position: absolute; inset: -8px; }
+  .check:hover { border-color: var(--ok); }
+  .check[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .body { flex: 1 1 auto; min-width: 0; }
+  .title { margin: 0 0 3px; font-size: 16px; font-weight: 800; }
+  .title a { color: var(--ink); text-decoration: none; }
+  .title a:hover { color: #5b21b6; text-decoration: underline; }
+  .desc { margin: 0; font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .meta { display: flex; align-items: center; gap: 14px; flex: 0 0 auto; }
+  .src { font-size: 13px; font-weight: 700; color: var(--muted-2); }
+  .site { font-size: 13px; font-weight: 800; white-space: nowrap; }
+  .go { flex: 0 0 auto; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #5b21b6; border-radius: 10px; }
+  .go:hover { background: var(--accent-soft); }
+  .topic-tag { font-size: 12px; font-weight: 700; color: var(--muted-2); }
+
+  .chip { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .chip-Tool { background: #ede9fe; color: #5b21b6; }
+  .chip-Course { background: #dbeafe; color: #1e40af; }
+  .chip-Guide { background: #fef0d4; color: #8a4b00; }
+  .chip-Video { background: #ffe4ee; color: #9d1747; }
+  .chip-Article { background: #e6edf5; color: #334155; }
+
+  .empty { margin: 0; padding: 32px; text-align: center; color: var(--muted); background: var(--card); border: 1px dashed #c5cbda; border-radius: 12px; }
+  .empty button { margin-top: 10px; }
+  .foot { max-width: 1280px; margin: 0 auto; padding: 24px 28px 40px; font-size: 13px; color: var(--muted-2); border-top: 1px solid var(--line); }
+
+  @media (max-width: 820px) {
+    .top { position: static; }
+    .top-inner { padding: 12px 16px; }
+    .go { display: none; }
+    .body { flex-basis: calc(100% - 50px) !important; }
+    .side { position: static; padding: 16px 16px 0; gap: 12px; flex-basis: 100%; min-width: 0; max-width: 100%; }
+    .side > div { min-width: 0; }
+    .side-list { flex-direction: row; overflow-x: auto; gap: 6px; padding-bottom: 4px; }
+    .side h2 { margin-left: 0; }
+    .nav-btn { width: auto; white-space: nowrap; border: 1px solid #d5d9e4; background: #fff; }
+    .main { padding: 18px 16px 40px; }
+    .head h1 { font-size: 24px; }
+    .row { flex-wrap: wrap; gap: 10px 14px; padding: 14px; }
+    .body { flex-basis: calc(100% - 90px); }
+    .desc { white-space: normal; }
+    .meta { order: 3; flex-basis: 100%; padding-left: 42px; justify-content: flex-start; flex-wrap: wrap; gap: 8px 12px; }
+    .bar { width: 80px; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="logo" href="#all" aria-label="Tony's Training Hub, home"><span class="logo-mark" aria-hidden="true">TT</span>Tony's Training Hub</a>
+    <label class="search">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#535b73" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="sr">Search the hub</span>
+      <input id="q" type="search" autocomplete="off" placeholder="Search tools, courses, guides and videos">
+      <kbd aria-hidden="true">/</kbd>
+    </label>
+    <div class="top-right">
+      <div class="progress" aria-live="polite"><span>Your progress</span><div class="bar"><span id="bar"></span></div><span id="prog-text"></span></div>
+      <a class="btn" href="https://tony37uk.github.io/ai-training-hub/#feedback" target="_blank" rel="noopener">Suggest a resource</a>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="side" aria-label="Browse">
+    <div>
+      <h2>Topics</h2>
+      <div class="side-list" id="topics"></div>
+    </div>
+    <div>
+      <h2>Quick links</h2>
+      <div class="side-list" id="quick"></div>
+    </div>
+  </nav>
+
+  <main class="main" id="main">
+    <p class="crumb" id="crumb"></p>
+    <div class="head">
+      <div><h1 id="h1"></h1><p id="blurb"></p></div>
+      <p class="count" id="count"></p>
+    </div>
+    <div class="pills" role="group" aria-label="Filter by type" id="pills"></div>
+    <div class="rows" id="rows"></div>
+  </main>
+</div>
+<footer class="foot">Your progress is saved in this browser only. Guides and provider pages open on the AI Training Hub site.</footer>
+
+<script>
+const ITEMS = [{"title": "ChatGPT", "topic": "tools", "type": "Tool", "src": "OpenAI", "desc": "OpenAI's conversational AI — great for writing, coding, and brainstorming.", "url": "https://chatgpt.com"}, {"title": "Claude", "topic": "tools", "type": "Tool", "src": "Anthropic", "desc": "Anthropic's AI assistant — helpful, harmless, and honest.", "url": "https://claude.ai"}, {"title": "Microsoft Copilot", "topic": "tools", "type": "Tool", "src": "Microsoft", "desc": "AI assistant built into Microsoft 365 and Windows — your everyday AI.", "url": "https://copilot.microsoft.com"}, {"title": "Qwen", "topic": "tools", "type": "Tool", "src": "Alibaba", "desc": "Alibaba's powerful open-source large language model family.", "url": "https://qwenlm.github.io"}, {"title": "DeepSeek", "topic": "tools", "type": "Tool", "src": "DeepSeek", "desc": "High-performance AI model from DeepSeek — strong at reasoning and code.", "url": "https://chat.deepseek.com"}, {"title": "Gemini", "topic": "tools", "type": "Tool", "src": "Google", "desc": "Google's multimodal AI — integrated with Search, Docs, and more.", "url": "https://gemini.google.com"}, {"title": "Perplexity AI", "topic": "tools", "type": "Tool", "src": "Perplexity", "desc": "AI-powered search engine — get cited, up-to-date answers instantly.", "url": "https://www.perplexity.ai"}, {"title": "Grok", "topic": "tools", "type": "Tool", "src": "xAI", "desc": "xAI's conversational AI with real-time access to X/Twitter data and web search.", "url": "https://grok.com"}, {"title": "Meta AI", "topic": "tools", "type": "Tool", "src": "Meta", "desc": "Meta's AI assistant built into Facebook, Instagram, WhatsApp and the web.", "url": "https://www.meta.ai"}, {"title": "Anthropic Academy", "topic": "courses", "type": "Course", "src": "AI", "desc": "Learn prompt engineering and how to get the best out of Claude.", "url": "https://tony37uk.github.io/ai-training-hub/resources-anthropic-academy.html", "site": "https://www.anthropic.com/learn"}, {"title": "OpenAI Academy", "topic": "courses", "type": "Course", "src": "OpenAI", "desc": "Free courses, prompt guides and developer docs from the makers of ChatGPT and GPT-4.", "url": "https://tony37uk.github.io/ai-training-hub/resources-openai.html", "site": "https://academy.openai.com"}, {"title": "Google Gemini", "topic": "courses", "type": "Course", "src": "Google", "desc": "Learn to use Gemini — Google's multimodal AI — via the Gemini app, AI Studio and Vertex AI.", "url": "https://tony37uk.github.io/ai-training-hub/resources-gemini.html", "site": "https://ai.google.dev"}, {"title": "Hugging Face", "topic": "courses", "type": "Course", "src": "Open Source", "desc": "The home of open-source AI — free courses, 1M+ models, and hands-on ML tools.", "url": "https://tony37uk.github.io/ai-training-hub/resources-huggingface.html", "site": "https://huggingface.co"}, {"title": "Anthropic: Multi-Agent Research System", "topic": "claude", "type": "Article", "src": "Agents", "desc": "How Anthropic built Claude's Research feature with a lead agent and parallel subagents — a real-world agent swarm.", "url": "https://www.anthropic.com/engineering/multi-agent-research-system"}, {"title": "Hugging Face Agents Course", "topic": "courses", "type": "Course", "src": "Free course", "desc": "Free AI agents course with certificates, covering smolagents, LlamaIndex and LangGraph. About 3–4 hours a week.", "url": "https://huggingface.co/learn/agents-course/unit0/introduction"}, {"title": "Microsoft Agent Framework", "topic": "courses", "type": "Course", "src": "Microsoft", "desc": "Microsoft's framework for AI agents and multi-agent workflows in .NET and Python, successor to Semantic Kernel and AutoGen.", "url": "https://learn.microsoft.com/en-us/agent-framework/overview/"}, {"title": "IBM: Agentic AI with LangGraph, CrewAI & AutoGen", "topic": "courses", "type": "Course", "src": "Course", "desc": "Coursera course on building AI agents and multi-agent systems with LangGraph, CrewAI, AutoGen and BeeAI side by side.", "url": "https://coursera.org/share/a06e4ae58ee07e980be718acfb1511f7"}, {"title": "From OpenAI Swarm to AgentKit", "topic": "agents", "type": "Article", "src": "Agents", "desc": "Why OpenAI retired its Swarm agents framework and what replaced it: the Agents SDK and AgentKit.", "url": "https://betterstack.com/community/guides/ai/openai-swarm-to-agentkit/"}, {"title": "Setting Up GitHub Pages", "topic": "coding", "type": "Guide", "src": "Beginner", "desc": "Step-by-step guide to hosting your first static website for free.", "url": "https://tony37uk.github.io/ai-training-hub/guide-github-pages.html"}, {"title": "Writing Better Prompts", "topic": "prompting", "type": "Guide", "src": "Prompt Eng.", "desc": "Practical tips for getting great results from AI tools like Claude.", "url": "https://tony37uk.github.io/ai-training-hub/guide-writing-better-prompts.html"}, {"title": "Getting Started with Claude Code", "topic": "claude", "type": "Guide", "src": "Claude Code", "desc": "Install, configure and run your first Claude Code session in minutes.", "url": "https://tony37uk.github.io/ai-training-hub/guide-claude-code.html"}, {"title": "Getting Started with AI Agents", "topic": "agents", "type": "Guide", "src": "AI Agents", "desc": "What AI agents are, how they work, and how to get started safely as an IT professional.", "url": "https://tony37uk.github.io/ai-training-hub/guide-ai-agents.html"}, {"title": "Getting Started with OpenClaw", "topic": "agents", "type": "Guide", "src": "OpenClaw", "desc": "Install and use OpenClaw — the open-source personal AI assistant that lives on your machine.", "url": "https://tony37uk.github.io/ai-training-hub/guide-openclaw.html"}, {"title": "Getting Started with Vibe Coding", "topic": "coding", "type": "Guide", "src": "Vibe Coding", "desc": "Build real software using plain English and AI tools — no coding experience required.", "url": "https://tony37uk.github.io/ai-training-hub/guide-vibe-coding.html"}, {"title": "Multi-Agent Systems & Swarms Explained", "topic": "agents", "type": "Guide", "src": "Agents", "desc": "The four patterns behind AI agent swarms, when multi-agent is worth it, and how to keep it safe.", "url": "https://tony37uk.github.io/ai-training-hub/guide-multi-agent-swarms.html"}, {"title": "Build a Swarm with Claude Code Subagents", "topic": "claude", "type": "Guide", "src": "Hands-on", "desc": "Create four specialist Claude Code agents that check, research, write and review content for this hub.", "url": "https://tony37uk.github.io/ai-training-hub/guide-claude-code-swarm.html"}, {"title": "Choosing an Agent Framework", "topic": "agents", "type": "Guide", "src": "Agents", "desc": "Microsoft Agent Framework, Claude Agent SDK, OpenAI Agents SDK, LangGraph and CrewAI compared for building agents.", "url": "https://tony37uk.github.io/ai-training-hub/guide-agent-frameworks.html"}, {"title": "Intro to AI for IT Pros", "topic": "basics", "type": "Video", "src": "AI Basics", "desc": "A 35-minute beginner's guide to generative AI — covering neural networks, tokens, prompting, RAG, hallucinations and more.", "url": "https://www.youtube.com/watch?v=O3F0AVd0nSc"}, {"title": "AI-Assisted Coding Tutorial", "topic": "coding", "type": "Video", "src": "AI Coding", "desc": "A hands-on tutorial showing how to build and ship projects faster using AI coding tools.", "url": "https://www.youtube.com/watch?v=wlpBCazAY9Q&t=153s"}, {"title": "Intro to Large Language Models", "topic": "basics", "type": "Video", "src": "LLM", "desc": "A 1-hour general-audience introduction to Large Language Models — the core technical component behind systems like ChatGPT, Claude, and Bard.", "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g"}, {"title": "What is Ollama? Running Local LLMs Made Simple", "topic": "basics", "type": "Video", "src": "Local LLMs", "desc": "A quick-start guide to Ollama — run open-source LLMs like Llama, Mistral and Qwen on your own machine, privately and for free.", "url": "https://www.youtube.com/watch?v=5RIOQuHOihY&t=15s"}, {"title": "OpenClaw Full Tutorial: Set up your first AI employee!", "topic": "agents", "type": "Video", "src": "OpenClaw", "desc": "A full walkthrough of OpenClaw — install it, configure your skills, and set up your first personal AI employee running on your own machine.", "url": "https://www.youtube.com/watch?v=mGcdxFPwBdU"}];
+const TOPICS = [
+  ["basics", "AI Basics", "Start here: what generative AI and LLMs are, and how to run them locally."],
+  ["tools", "AI Assistants", "The chat assistants worth knowing, and what each is good at."],
+  ["prompting", "Prompting", "Get better answers by asking better questions."],
+  ["claude", "Claude & Claude Code", "Anthropic's assistant, its coding agent and how they're built."],
+  ["coding", "AI Coding", "Ship real projects with AI pair-programming and vibe coding."],
+  ["agents", "Agents & Swarms", "Single agents, multi-agent systems and the frameworks behind them."],
+  ["courses", "Courses & Academies", "Free structured learning from the big AI labs and platforms."],
+];
+const QUICK = [
+  ["all", "Everything A–Z", "Every resource on the hub, in alphabetical order."],
+  ["done", "My completed items", "Everything you've ticked off so far."],
+  ["todo", "Still to do", "Everything you haven't ticked off yet."],
+];
+const TYPES = ["Tool", "Course", "Guide", "Video", "Article"];
+const KEY = "tth-done-v1";
+const ARROW = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const TICK = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>';
+
+let done = {};
+try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+
+const state = { view: "basics", type: "All", q: "" };
+const topicName = id => (TOPICS.find(t => t[0] === id) || [id, id])[1];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const $ = id => document.getElementById(id);
+
+function viewItems() {
+  const v = state.view;
+  if (state.q) {
+    const q = state.q.toLowerCase();
+    return ITEMS.filter(i => [i.title, i.desc, i.src, i.type, topicName(i.topic)].join(" ").toLowerCase().includes(q));
+  }
+  let list;
+  if (v === "all") list = ITEMS.slice();
+  else if (v === "done") list = ITEMS.filter(i => done[i.title]);
+  else if (v === "todo") list = ITEMS.filter(i => !done[i.title]);
+  else list = ITEMS.filter(i => i.topic === v);
+  if (v === "all" || v === "done" || v === "todo") list.sort((a, b) => a.title.localeCompare(b.title));
+  return list;
+}
+
+function renderNav() {
+  const btn = (id, name, n) =>
+    `<button class="nav-btn" data-view="${id}" ${!state.q && state.view === id ? 'aria-current="true"' : ""}><span>${esc(name)}</span><span class="n">${n}</span></button>`;
+  $("topics").innerHTML = TOPICS.map(t => btn(t[0], t[1], ITEMS.filter(i => i.topic === t[0]).length)).join("");
+  const doneN = ITEMS.filter(i => done[i.title]).length;
+  $("quick").innerHTML = btn("all", QUICK[0][1], ITEMS.length) + btn("done", QUICK[1][1], doneN) + btn("todo", QUICK[2][1], ITEMS.length - doneN);
+  $("bar").style.width = Math.round(doneN / ITEMS.length * 100) + "%";
+  $("prog-text").textContent = `${doneN} of ${ITEMS.length}`;
+}
+
+function renderMain() {
+  const base = viewItems();
+  const meta = state.q ? null : (TOPICS.find(t => t[0] === state.view) || QUICK.find(t => t[0] === state.view));
+  const isTopic = !state.q && TOPICS.some(t => t[0] === state.view);
+  $("crumb").textContent = state.q ? "Search" : (isTopic ? "Topics / " + meta[1] : "Quick links / " + meta[1]);
+  $("h1").textContent = state.q ? `Results for “${state.q}”` : meta[1];
+  $("blurb").textContent = state.q ? "Matching titles, descriptions, providers and topics across the whole hub." : meta[2];
+
+  const present = TYPES.filter(t => base.some(i => i.type === t));
+  if (state.type !== "All" && !present.includes(state.type)) state.type = "All";
+  $("pills").innerHTML = ["All", ...present].map(t => {
+    const n = t === "All" ? base.length : base.filter(i => i.type === t).length;
+    return `<button class="pill" data-type="${t}" aria-pressed="${state.type === t}">${t === "All" ? "All" : t + "s"} (${n})</button>`;
+  }).join("");
+  $("pills").style.display = base.length ? "" : "none";
+
+  const list = base.filter(i => state.type === "All" || i.type === state.type);
+  $("count").textContent = list.length === 1 ? "1 item" : `${list.length} items`;
+  const showTopic = !isTopic;
+
+  if (!list.length) {
+    const msg = state.q ? "Nothing matches that search yet."
+      : state.view === "done" ? "You haven't ticked anything off yet. Tick the circle next to any resource once you've finished it."
+      : state.view === "todo" ? "You've completed everything on the hub. Nice work."
+      : "Nothing here yet.";
+    $("rows").innerHTML = `<div class="empty"><p style="margin:0">${msg}</p>${state.q ? '<button class="pill" data-clear="1">Clear search</button>' : ""}</div>`;
+    return;
+  }
+  $("rows").innerHTML = list.map(i => {
+    const d = !!done[i.title];
+    const site = i.site ? `<a class="site" href="${esc(i.site)}" target="_blank" rel="noopener">Visit site</a>` : "";
+    return `<article class="row${d ? " done" : ""}">
+      <button class="check" data-done="${esc(i.title)}" aria-pressed="${d}" aria-label="${d ? "Completed: " : "Mark complete: "}${esc(i.title)}">${TICK}</button>
+      <div class="body">
+        <h2 class="title"><a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a></h2>
+        <p class="desc" title="${esc(i.desc)}">${esc(i.desc)}</p>
+      </div>
+      <div class="meta">
+        ${showTopic ? `<span class="topic-tag">${esc(topicName(i.topic))}</span>` : ""}
+        ${site}
+        <span class="src">${esc(i.src)}</span>
+        <span class="chip chip-${i.type}">${i.type}</span>
+      </div>
+      <a class="go" href="${esc(i.url)}" target="_blank" rel="noopener" aria-label="Open ${esc(i.title)}">${ARROW}</a>
+    </article>`;
+  }).join("");
+}
+
+function render() {
+  renderNav(); renderMain();
+  const cur = document.querySelector('.nav-btn[aria-current="true"]');
+  if (cur && window.innerWidth <= 820) { const l = cur.parentElement; l.scrollLeft = cur.offsetLeft - l.offsetLeft - (l.clientWidth - cur.offsetWidth) / 2; }
+}
+
+function go(view, push) {
+  state.view = view; state.type = "All"; state.q = ""; $("q").value = "";
+  if (push) { try { history.replaceState(null, "", "#" + view); } catch (e) { location.hash = view; } }
+  render();
+  if (window.innerWidth <= 820) $("main").scrollIntoView({ block: "start" });
+}
+
+document.addEventListener("click", e => {
+  const v = e.target.closest("[data-view]");
+  if (v) { go(v.dataset.view, true); return; }
+  const t = e.target.closest("[data-type]");
+  if (t) { state.type = t.dataset.type; renderMain(); return; }
+  const c = e.target.closest("[data-done]");
+  if (c) {
+    const k = c.dataset.done;
+    if (done[k]) delete done[k]; else done[k] = 1;
+    save(); render();
+    const again = document.querySelector(`[data-done="${CSS.escape(k)}"]`);
+    if (again) again.focus();
+    return;
+  }
+  if (e.target.closest("[data-clear]")) { state.q = ""; $("q").value = ""; render(); $("q").focus(); }
+});
+
+$("q").addEventListener("input", e => { state.q = e.target.value.trim(); state.type = "All"; render(); });
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) { e.preventDefault(); $("q").focus(); }
+  if (e.key === "Escape" && document.activeElement === $("q") && state.q) { state.q = ""; $("q").value = ""; render(); }
+});
+
+function fromHash() {
+  const h = (location.hash || "").slice(1);
+  const valid = TOPICS.concat(QUICK).some(t => t[0] === h);
+  state.view = valid ? h : "basics"; state.type = "All";
+  render();
+}
+window.addEventListener("hashchange", fromHash);
+fromHash();
+</script>
+</body>
+</html>
