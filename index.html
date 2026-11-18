@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   :root {
     --bg: #f6f7fb; --card: #ffffff; --ink: #141a2e; --ink-2: #2b3246; --muted: #474f68; --muted-2: #535b73;
     --line: #e3e6ef; --line-2: #cfd4e0; --accent: #6d28d9; --accent-ink: #4c1d95; --accent-soft: #ede9fe; --ok: #16a34a;
@@ -87,6 +88,75 @@
   .chip-Video { background: #ffe4ee; color: #9d1747; }
   .chip-Article { background: #e6edf5; color: #334155; }
 
+
+  /* Topic colours */
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; }
+  .nav-label { display: flex; align-items: center; gap: 10px; }
+  .t-basics { background: #eff5ff; border-color: #2563eb33; } .t-basics .tile-bar { background: #2563eb; } .t-basics .tile-n { background: #1e40af; } .t-basics .tile-mix { color: #1e40af; } .d-basics { background: #2563eb; }
+  .t-tools { background: #f4efff; border-color: #7c3aed33; } .t-tools .tile-bar { background: #7c3aed; } .t-tools .tile-n { background: #5b21b6; } .t-tools .tile-mix { color: #5b21b6; } .d-tools { background: #7c3aed; }
+  .t-prompting { background: #fff6e5; border-color: #d9770633; } .t-prompting .tile-bar { background: #d97706; } .t-prompting .tile-n { background: #92400e; } .t-prompting .tile-mix { color: #92400e; } .d-prompting { background: #d97706; }
+  .t-claude { background: #fff1e8; border-color: #ea580c33; } .t-claude .tile-bar { background: #ea580c; } .t-claude .tile-n { background: #9a3412; } .t-claude .tile-mix { color: #9a3412; } .d-claude { background: #ea580c; }
+  .t-coding { background: #ecfbf1; border-color: #16a34a33; } .t-coding .tile-bar { background: #16a34a; } .t-coding .tile-n { background: #166534; } .t-coding .tile-mix { color: #166534; } .d-coding { background: #16a34a; }
+  .t-agents { background: #e8faf7; border-color: #0d948833; } .t-agents .tile-bar { background: #0d9488; } .t-agents .tile-n { background: #115e59; } .t-agents .tile-mix { color: #115e59; } .d-agents { background: #0d9488; }
+  .t-courses { background: #fff0f6; border-color: #db277733; } .t-courses .tile-bar { background: #db2777; } .t-courses .tile-n { background: #9d174d; } .t-courses .tile-mix { color: #9d174d; } .d-courses { background: #db2777; }
+  .new-tag { font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #166534; background: #d9f5e5; border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
+  .title .new-tag { margin-left: 8px; vertical-align: 2px; }
+
+  /* Home */
+  .home { display: flex; flex-direction: column; gap: 36px; }
+  .home h2.sec { margin: 0; font-family: 'Poppins', sans-serif; font-size: 21px; font-weight: 700; }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 14px; }
+  .sec-head p { margin: 0; font-size: 14px; color: var(--muted-2); }
+  .hero-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch; }
+  .welcome { flex: 999 1 420px; background: #5b21b6; color: #fff; border-radius: 18px; padding: 30px 32px; display: flex; flex-direction: column; gap: 14px; }
+  .welcome h1 { margin: 0; font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; line-height: 1.2; }
+  .welcome p.lead { margin: 0; font-size: 16px; line-height: 1.55; color: #ede9fe; max-width: 560px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 6px; }
+  .stats b { display: block; font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 700; }
+  .stats span { font-size: 13px; font-weight: 700; color: #ddd6fe; }
+  .continue { flex: 1 1 260px; background: #115e59; color: #fff; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .continue h2 { margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #99f6e4; }
+  .continue p { margin: 0; font-size: 14px; color: #ccfbf1; }
+  .continue .next { font-family: 'Poppins', sans-serif; font-size: 19px; font-weight: 600; line-height: 1.3; color: #fff; }
+  .continue .cta { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 10px; background: #fbbf24; color: #141a2e; font-weight: 800; font-size: 14px; text-decoration: none; }
+  .continue .cta:hover { background: #f59e0b; color: #141a2e; }
+  .steps { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .step { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 18px; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); }
+  .step:hover, .tile:hover { border-color: #a78bfa; box-shadow: 0 6px 18px rgba(20,26,46,.08); color: var(--ink); }
+  .step .num { width: 30px; height: 30px; border-radius: 50%; color: #fff; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .step .st { font-size: 16px; font-weight: 800; line-height: 1.3; }
+  .step .sf { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 700; color: var(--muted-2); }
+  .s-1 { background: #eff5ff; } .s-1 .num { background: #1e40af; }
+  .s-2 { background: #fff6e5; } .s-2 .num { background: #92400e; }
+  .s-3 { background: #fff1e8; } .s-3 .num { background: #9a3412; }
+  .s-4 { background: #ecfbf1; } .s-4 .num { background: #166534; }
+  .step.is-done .num { background: var(--ok); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .tile { display: flex; flex-direction: column; gap: 8px; padding: 0 18px 18px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; text-decoration: none; color: var(--ink); }
+  .tile-bar { display: block; height: 6px; margin: 0 -18px 10px; }
+  .tile-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 17px; font-weight: 800; }
+  .tile-n { font-size: 12px; font-weight: 800; color: #fff; border-radius: 99px; padding: 3px 9px; }
+  .tile-b { font-size: 14px; line-height: 1.5; color: var(--muted); }
+  .tile-mix { margin-top: auto; font-size: 13px; font-weight: 800; }
+  .duo { display: flex; flex-wrap: wrap; gap: 20px; }
+  .panel { flex: 1 1 340px; border-radius: 16px; padding: 22px; }
+  .panel.new { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .panel.gd { background: #fffbeb; border: 1px solid #fde68a; }
+  .panel .sec-head { margin-bottom: 8px; }
+  .panel h2 { font-size: 19px !important; }
+  .plist { margin: 0; padding: 0; list-style: none; }
+  .plist li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(20,26,46,.08); }
+  .plist .pt { flex: 1; min-width: 0; }
+  .plist .pt a { display: block; font-size: 15px; font-weight: 800; color: var(--ink); text-decoration: none; }
+  .plist .pt a:hover { color: #5b21b6; text-decoration: underline; }
+  .plist .ps { font-size: 13px; color: var(--muted-2); }
+  .plist .pr { font-size: 13px; color: var(--muted-2); white-space: nowrap; }
+  .home-ico { display: inline-flex; }
+  @media (max-width: 820px) {
+    .welcome { padding: 24px; }
+    .welcome h1 { font-size: 26px; }
+  }
+
   .empty { margin: 0; padding: 32px; text-align: center; color: var(--muted); background: var(--card); border: 1px dashed #c5cbda; border-radius: 12px; }
   .empty button { margin-top: 10px; }
   .foot { max-width: 1280px; margin: 0 auto; padding: 24px 28px 40px; font-size: 13px; color: var(--muted-2); border-top: 1px solid var(--line); }
@@ -114,7 +184,7 @@
 <body>
 <header class="top">
   <div class="top-inner">
-    <a class="logo" href="#all" aria-label="Tony's Training Hub, home"><span class="logo-mark" aria-hidden="true">TT</span>Tony's Training Hub</a>
+    <a class="logo" href="#home" aria-label="Tony's Training Hub, home"><span class="logo-mark" aria-hidden="true">TT</span>Tony's Training Hub</a>
     <label class="search">
       <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#535b73" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <span class="sr">Search the hub</span>
@@ -130,6 +200,7 @@
 
 <div class="layout">
   <nav class="side" aria-label="Browse">
+    <div class="side-list" id="homeNav"></div>
     <div>
       <h2>Topics</h2>
       <div class="side-list" id="topics"></div>
@@ -141,6 +212,8 @@
   </nav>
 
   <main class="main" id="main">
+    <div class="home" id="homeView" hidden></div>
+    <div id="listView">
     <p class="crumb" id="crumb"></p>
     <div class="head">
       <div><h1 id="h1"></h1><p id="blurb"></p></div>
@@ -148,12 +221,13 @@
     </div>
     <div class="pills" role="group" aria-label="Filter by type" id="pills"></div>
     <div class="rows" id="rows"></div>
+    </div>
   </main>
 </div>
 <footer class="foot">Your progress is saved in this browser only.</footer>
 
 <script>
-const ITEMS = [{"title": "ChatGPT", "topic": "tools", "type": "Tool", "src": "OpenAI", "desc": "OpenAI's conversational AI — great for writing, coding, and brainstorming.", "url": "https://chatgpt.com"}, {"title": "Claude", "topic": "tools", "type": "Tool", "src": "Anthropic", "desc": "Anthropic's AI assistant — helpful, harmless, and honest.", "url": "https://claude.ai"}, {"title": "Microsoft Copilot", "topic": "tools", "type": "Tool", "src": "Microsoft", "desc": "AI assistant built into Microsoft 365 and Windows — your everyday AI.", "url": "https://copilot.microsoft.com"}, {"title": "Qwen", "topic": "tools", "type": "Tool", "src": "Alibaba", "desc": "Alibaba's powerful open-source large language model family.", "url": "https://qwenlm.github.io"}, {"title": "DeepSeek", "topic": "tools", "type": "Tool", "src": "DeepSeek", "desc": "High-performance AI model from DeepSeek — strong at reasoning and code.", "url": "https://chat.deepseek.com"}, {"title": "Gemini", "topic": "tools", "type": "Tool", "src": "Google", "desc": "Google's multimodal AI — integrated with Search, Docs, and more.", "url": "https://gemini.google.com"}, {"title": "Perplexity AI", "topic": "tools", "type": "Tool", "src": "Perplexity", "desc": "AI-powered search engine — get cited, up-to-date answers instantly.", "url": "https://www.perplexity.ai"}, {"title": "Grok", "topic": "tools", "type": "Tool", "src": "xAI", "desc": "xAI's conversational AI with real-time access to X/Twitter data and web search.", "url": "https://grok.com"}, {"title": "Meta AI", "topic": "tools", "type": "Tool", "src": "Meta", "desc": "Meta's AI assistant built into Facebook, Instagram, WhatsApp and the web.", "url": "https://www.meta.ai"}, {"title": "Anthropic Academy", "topic": "courses", "type": "Course", "src": "AI", "desc": "Learn prompt engineering and how to get the best out of Claude.", "url": "resources-anthropic-academy.html", "site": "https://www.anthropic.com/learn"}, {"title": "OpenAI Academy", "topic": "courses", "type": "Course", "src": "OpenAI", "desc": "Free courses, prompt guides and developer docs from the makers of ChatGPT and GPT-4.", "url": "resources-openai.html", "site": "https://academy.openai.com"}, {"title": "Google Gemini", "topic": "courses", "type": "Course", "src": "Google", "desc": "Learn to use Gemini — Google's multimodal AI — via the Gemini app, AI Studio and Vertex AI.", "url": "resources-gemini.html", "site": "https://ai.google.dev"}, {"title": "Hugging Face", "topic": "courses", "type": "Course", "src": "Open Source", "desc": "The home of open-source AI — free courses, 1M+ models, and hands-on ML tools.", "url": "resources-huggingface.html", "site": "https://huggingface.co"}, {"title": "Claude 101", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Learn to use Claude for everyday work, from first conversations and good prompting to projects, artifacts, skills and connected tools. 13 lessons, about 2.5 hours.", "url": "https://academy.claude.com/courses/claude-101"}, {"title": "Intro to Projects", "topic": "claude", "type": "Guide", "src": "Claude Academy", "desc": "A 7-minute tutorial on using Projects to keep your Claude chats, files and instructions organised in one place.", "url": "https://academy.claude.com/tutorials/intro-to-projects"}, {"title": "Introduction to Claude Cowork", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Learn to hand multi-step work to Claude: setting up workspaces, giving context, running tasks and using plugins for research, documents and browser work. 14 lessons, about 2.5 hours.", "url": "https://academy.claude.com/courses/introduction-to-claude-cowork"}, {"title": "Getting Started with Claude Code", "topic": "claude", "type": "Guide", "src": "Claude Code", "desc": "Install, configure and run your first Claude Code session in minutes.", "url": "guide-claude-code.html"}, {"title": "Claude Code 101", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Anthropic's official introduction to using Claude Code in your daily development workflow. 12 lessons, about 1.5 hours.", "url": "https://academy.claude.com/courses/claude-code-101"}, {"title": "Claude Code in Action", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Hands-on practice with Claude Code on real projects: steering long sessions, setting it up well and checking what comes back. 9 lessons, about 1 hour. Basic Git helps.", "url": "https://academy.claude.com/courses/claude-code-in-action"}, {"title": "Best practices for Claude Code", "topic": "claude", "type": "Guide", "src": "Anthropic", "desc": "Anthropic's official, regularly updated guide to getting the best from Claude Code, from managing context to setting up CLAUDE.md.", "url": "https://code.claude.com/docs/en/best-practices"}, {"title": "Build a Swarm with Claude Code Subagents", "topic": "claude", "type": "Guide", "src": "Hands-on", "desc": "Create four specialist Claude Code agents that check, research, write and review content for this hub.", "url": "guide-claude-code-swarm.html"}, {"title": "Introduction to subagents", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "How to use and create subagents in Claude Code to manage context, delegate tasks and build specialised workflows. 4 lessons, about 45 minutes.", "url": "https://academy.claude.com/courses/introduction-to-subagents"}, {"title": "Introduction to agent skills", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Build, configure and share skills in Claude Code: reusable instructions Claude applies automatically to matching tasks. 6 lessons, about 1 hour.", "url": "https://academy.claude.com/courses/introduction-to-agent-skills"}, {"title": "Introduction to Model Context Protocol", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "For developers: build MCP servers and clients in Python to connect Claude to other tools and data. 10 lessons, about 1 hour. Needs basic Python.", "url": "https://academy.claude.com/courses/introduction-to-model-context-protocol"}, {"title": "Anthropic: Multi-Agent Research System", "topic": "claude", "type": "Article", "src": "Agents", "desc": "How Anthropic built Claude's Research feature with a lead agent and parallel subagents — a real-world agent swarm.", "url": "https://www.anthropic.com/engineering/multi-agent-research-system"}, {"title": "Hugging Face Agents Course", "topic": "courses", "type": "Course", "src": "Free course", "desc": "Free AI agents course with certificates, covering smolagents, LlamaIndex and LangGraph. About 3–4 hours a week.", "url": "https://huggingface.co/learn/agents-course/unit0/introduction"}, {"title": "Microsoft Agent Framework", "topic": "courses", "type": "Course", "src": "Microsoft", "desc": "Microsoft's framework for AI agents and multi-agent workflows in .NET and Python, successor to Semantic Kernel and AutoGen.", "url": "https://learn.microsoft.com/en-us/agent-framework/overview/"}, {"title": "IBM: Agentic AI with LangGraph, CrewAI & AutoGen", "topic": "courses", "type": "Course", "src": "Course", "desc": "Coursera course on building AI agents and multi-agent systems with LangGraph, CrewAI, AutoGen and BeeAI side by side.", "url": "https://coursera.org/share/a06e4ae58ee07e980be718acfb1511f7"}, {"title": "From OpenAI Swarm to AgentKit", "topic": "agents", "type": "Article", "src": "Agents", "desc": "Why OpenAI retired its Swarm agents framework and what replaced it: the Agents SDK and AgentKit.", "url": "https://betterstack.com/community/guides/ai/openai-swarm-to-agentkit/"}, {"title": "Setting Up GitHub Pages", "topic": "coding", "type": "Guide", "src": "Beginner", "desc": "Step-by-step guide to hosting your first static website for free.", "url": "guide-github-pages.html"}, {"title": "Writing Better Prompts", "topic": "prompting", "type": "Guide", "src": "Prompt Eng.", "desc": "Practical tips for getting great results from AI tools like Claude.", "url": "guide-writing-better-prompts.html"}, {"title": "AI Fluency: Framework & Foundations", "topic": "prompting", "type": "Course", "src": "Anthropic", "desc": "A free course on working with AI effectively and safely, built around the 4D framework: Delegation, Description, Discernment and Diligence. 14 lessons, about 4 hours.", "url": "https://academy.claude.com/courses/ai-fluency-framework-foundations"}, {"title": "Prompt Engineering Interactive Tutorial", "topic": "prompting", "type": "Course", "src": "Anthropic", "desc": "Anthropic's hands-on, 9-chapter prompting course, from beginner to advanced. Comes as notebooks or an easier Google Sheets version.", "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial"}, {"title": "Prompt engineering best practices for ChatGPT", "topic": "prompting", "type": "Guide", "src": "OpenAI", "desc": "OpenAI's own short guide to writing clear, specific prompts and refining ChatGPT's answers.", "url": "https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt"}, {"title": "Copilot Prompt Gallery", "topic": "prompting", "type": "Tool", "src": "Microsoft", "desc": "Microsoft's library of ready-made Copilot prompts for everyday work tasks, which you can adapt, save and share with your team.", "url": "https://adoption.microsoft.com/copilot/prompt-gallery"}, {"title": "Gemini for Google Workspace: Prompting Guide 101", "topic": "prompting", "type": "Guide", "src": "Google", "desc": "Google's quick-start handbook (PDF) on writing effective prompts, with example prompts for different roles and everyday tasks.", "url": "https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf"}, {"title": "Getting Started with AI Agents", "topic": "agents", "type": "Guide", "src": "AI Agents", "desc": "What AI agents are, how they work, and how to get started safely as an IT professional.", "url": "guide-ai-agents.html"}, {"title": "Getting Started with OpenClaw", "topic": "agents", "type": "Guide", "src": "OpenClaw", "desc": "Install and use OpenClaw — the open-source personal AI assistant that lives on your machine.", "url": "guide-openclaw.html"}, {"title": "Getting Started with Vibe Coding", "topic": "coding", "type": "Guide", "src": "Vibe Coding", "desc": "Build real software using plain English and AI tools — no coding experience required.", "url": "guide-vibe-coding.html"}, {"title": "Multi-Agent Systems & Swarms Explained", "topic": "agents", "type": "Guide", "src": "Agents", "desc": "The four patterns behind AI agent swarms, when multi-agent is worth it, and how to keep it safe.", "url": "guide-multi-agent-swarms.html"}, {"title": "Choosing an Agent Framework", "topic": "agents", "type": "Guide", "src": "Agents", "desc": "Microsoft Agent Framework, Claude Agent SDK, OpenAI Agents SDK, LangGraph and CrewAI compared for building agents.", "url": "guide-agent-frameworks.html"}, {"title": "Intro to AI for IT Pros", "topic": "basics", "type": "Video", "src": "AI Basics", "desc": "A 35-minute beginner's guide to generative AI — covering neural networks, tokens, prompting, RAG, hallucinations and more.", "url": "https://www.youtube.com/watch?v=O3F0AVd0nSc"}, {"title": "AI-Assisted Coding Tutorial", "topic": "coding", "type": "Video", "src": "AI Coding", "desc": "A hands-on tutorial showing how to build and ship projects faster using AI coding tools.", "url": "https://www.youtube.com/watch?v=wlpBCazAY9Q&t=153s"}, {"title": "Intro to Large Language Models", "topic": "basics", "type": "Video", "src": "LLM", "desc": "A 1-hour general-audience introduction to Large Language Models — the core technical component behind systems like ChatGPT, Claude, and Bard.", "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g"}, {"title": "What Is a Transformer?", "topic": "basics", "type": "Video", "src": "3Blue1Brown", "desc": "A visual walkthrough of the transformer, the architecture behind GPT and other LLMs: tokens, embeddings and predicting the next word.", "url": "https://www.youtube.com/watch?v=wjZofJX0v4M"}, {"title": "Attention in transformers, step-by-step | Deep Learning Chapter 6", "topic": "basics", "type": "Video", "src": "3Blue1Brown", "desc": "How the attention mechanism lets each word in a sentence pick up meaning from the words around it, explained visually step by step.", "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc"}, {"title": "Why Large Language Models Hallucinate", "topic": "basics", "type": "Video", "src": "IBM Technology", "desc": "Why LLMs sometimes state things that aren't true, and practical ways to reduce hallucinations.", "url": "https://www.youtube.com/watch?v=cfqtFvWOfg0"}, {"title": "What is Retrieval-Augmented Generation (RAG)?", "topic": "basics", "type": "Video", "src": "IBM Technology", "desc": "How RAG connects an LLM to up-to-date or private sources, so its answers are more accurate and can cite where they came from.", "url": "https://www.youtube.com/watch?v=T-D1OfcDW1M"}, {"title": "What is Ollama? Running Local LLMs Made Simple", "topic": "basics", "type": "Video", "src": "Local LLMs", "desc": "A quick-start guide to Ollama — run open-source LLMs like Llama, Mistral and Qwen on your own machine, privately and for free.", "url": "https://www.youtube.com/watch?v=5RIOQuHOihY&t=15s"}, {"title": "What are AI Agents?", "topic": "basics", "type": "Video", "src": "IBM Technology", "desc": "How AI has moved from single models to compound systems and agents that reason, plan and use tools and data to solve problems.", "url": "https://www.youtube.com/watch?v=F8NKVhkZZWI"}, {"title": "Agents → Loops → Harness → Self-Improving Systems", "topic": "basics", "type": "Video", "src": "AI Agent Loops", "desc": "A two-hour lecture (in Russian) on AI agents, agent loops, harnesses and self-improving systems.", "url": "https://www.youtube.com/watch?v=vMhwv4nOJyg&t=1442s"}, {"title": "OpenClaw Full Tutorial: Set up your first AI employee!", "topic": "agents", "type": "Video", "src": "OpenClaw", "desc": "A full walkthrough of OpenClaw — install it, configure your skills, and set up your first personal AI employee running on your own machine.", "url": "https://www.youtube.com/watch?v=mGcdxFPwBdU"}];
+const ITEMS = [{"title": "ChatGPT", "topic": "tools", "type": "Tool", "src": "OpenAI", "desc": "OpenAI's conversational AI — great for writing, coding, and brainstorming.", "url": "https://chatgpt.com"}, {"title": "Claude", "topic": "tools", "type": "Tool", "src": "Anthropic", "desc": "Anthropic's AI assistant — helpful, harmless, and honest.", "url": "https://claude.ai"}, {"title": "Microsoft Copilot", "topic": "tools", "type": "Tool", "src": "Microsoft", "desc": "AI assistant built into Microsoft 365 and Windows — your everyday AI.", "url": "https://copilot.microsoft.com"}, {"title": "Qwen", "topic": "tools", "type": "Tool", "src": "Alibaba", "desc": "Alibaba's powerful open-source large language model family.", "url": "https://qwenlm.github.io"}, {"title": "DeepSeek", "topic": "tools", "type": "Tool", "src": "DeepSeek", "desc": "High-performance AI model from DeepSeek — strong at reasoning and code.", "url": "https://chat.deepseek.com"}, {"title": "Gemini", "topic": "tools", "type": "Tool", "src": "Google", "desc": "Google's multimodal AI — integrated with Search, Docs, and more.", "url": "https://gemini.google.com"}, {"title": "Perplexity AI", "topic": "tools", "type": "Tool", "src": "Perplexity", "desc": "AI-powered search engine — get cited, up-to-date answers instantly.", "url": "https://www.perplexity.ai"}, {"title": "Grok", "topic": "tools", "type": "Tool", "src": "xAI", "desc": "xAI's conversational AI with real-time access to X/Twitter data and web search.", "url": "https://grok.com"}, {"title": "Meta AI", "topic": "tools", "type": "Tool", "src": "Meta", "desc": "Meta's AI assistant built into Facebook, Instagram, WhatsApp and the web.", "url": "https://www.meta.ai"}, {"title": "Anthropic Academy", "topic": "courses", "type": "Course", "src": "AI", "desc": "Learn prompt engineering and how to get the best out of Claude.", "url": "resources-anthropic-academy.html", "site": "https://www.anthropic.com/learn"}, {"title": "OpenAI Academy", "topic": "courses", "type": "Course", "src": "OpenAI", "desc": "Free courses, prompt guides and developer docs from the makers of ChatGPT and GPT-4.", "url": "resources-openai.html", "site": "https://academy.openai.com"}, {"title": "Google Gemini", "topic": "courses", "type": "Course", "src": "Google", "desc": "Learn to use Gemini — Google's multimodal AI — via the Gemini app, AI Studio and Vertex AI.", "url": "resources-gemini.html", "site": "https://ai.google.dev"}, {"title": "Hugging Face", "topic": "courses", "type": "Course", "src": "Open Source", "desc": "The home of open-source AI — free courses, 1M+ models, and hands-on ML tools.", "url": "resources-huggingface.html", "site": "https://huggingface.co"}, {"title": "Claude 101", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Learn to use Claude for everyday work, from first conversations and good prompting to projects, artifacts, skills and connected tools. 13 lessons, about 2.5 hours.", "url": "https://academy.claude.com/courses/claude-101", "added": "2026-11-18T09:19"}, {"title": "Intro to Projects", "topic": "claude", "type": "Guide", "src": "Claude Academy", "desc": "A 7-minute tutorial on using Projects to keep your Claude chats, files and instructions organised in one place.", "url": "https://academy.claude.com/tutorials/intro-to-projects", "added": "2026-11-18T09:23"}, {"title": "Introduction to Claude Cowork", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Learn to hand multi-step work to Claude: setting up workspaces, giving context, running tasks and using plugins for research, documents and browser work. 14 lessons, about 2.5 hours.", "url": "https://academy.claude.com/courses/introduction-to-claude-cowork", "added": "2026-11-18T09:23"}, {"title": "Getting Started with Claude Code", "topic": "claude", "type": "Guide", "src": "Claude Code", "desc": "Install, configure and run your first Claude Code session in minutes.", "url": "guide-claude-code.html"}, {"title": "Claude Code 101", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Anthropic's official introduction to using Claude Code in your daily development workflow. 12 lessons, about 1.5 hours.", "url": "https://academy.claude.com/courses/claude-code-101", "added": "2026-11-18T09:19"}, {"title": "Claude Code in Action", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Hands-on practice with Claude Code on real projects: steering long sessions, setting it up well and checking what comes back. 9 lessons, about 1 hour. Basic Git helps.", "url": "https://academy.claude.com/courses/claude-code-in-action", "added": "2026-11-18T09:19"}, {"title": "Best practices for Claude Code", "topic": "claude", "type": "Guide", "src": "Anthropic", "desc": "Anthropic's official, regularly updated guide to getting the best from Claude Code, from managing context to setting up CLAUDE.md.", "url": "https://code.claude.com/docs/en/best-practices", "added": "2026-11-18T09:19"}, {"title": "Build a Swarm with Claude Code Subagents", "topic": "claude", "type": "Guide", "src": "Hands-on", "desc": "Create four specialist Claude Code agents that check, research, write and review content for this hub.", "url": "guide-claude-code-swarm.html"}, {"title": "Introduction to subagents", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "How to use and create subagents in Claude Code to manage context, delegate tasks and build specialised workflows. 4 lessons, about 45 minutes.", "url": "https://academy.claude.com/courses/introduction-to-subagents", "added": "2026-11-18T09:19"}, {"title": "Introduction to agent skills", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "Build, configure and share skills in Claude Code: reusable instructions Claude applies automatically to matching tasks. 6 lessons, about 1 hour.", "url": "https://academy.claude.com/courses/introduction-to-agent-skills", "added": "2026-11-18T09:23"}, {"title": "Introduction to Model Context Protocol", "topic": "claude", "type": "Course", "src": "Claude Academy", "desc": "For developers: build MCP servers and clients in Python to connect Claude to other tools and data. 10 lessons, about 1 hour. Needs basic Python.", "url": "https://academy.claude.com/courses/introduction-to-model-context-protocol", "added": "2026-11-18T09:23"}, {"title": "Anthropic: Multi-Agent Research System", "topic": "claude", "type": "Article", "src": "Agents", "desc": "How Anthropic built Claude's Research feature with a lead agent and parallel subagents — a real-world agent swarm.", "url": "https://www.anthropic.com/engineering/multi-agent-research-system"}, {"title": "Hugging Face Agents Course", "topic": "courses", "type": "Course", "src": "Free course", "desc": "Free AI agents course with certificates, covering smolagents, LlamaIndex and LangGraph. About 3–4 hours a week.", "url": "https://huggingface.co/learn/agents-course/unit0/introduction"}, {"title": "Microsoft Agent Framework", "topic": "courses", "type": "Course", "src": "Microsoft", "desc": "Microsoft's framework for AI agents and multi-agent workflows in .NET and Python, successor to Semantic Kernel and AutoGen.", "url": "https://learn.microsoft.com/en-us/agent-framework/overview/"}, {"title": "IBM: Agentic AI with LangGraph, CrewAI & AutoGen", "topic": "courses", "type": "Course", "src": "Course", "desc": "Coursera course on building AI agents and multi-agent systems with LangGraph, CrewAI, AutoGen and BeeAI side by side.", "url": "https://coursera.org/share/a06e4ae58ee07e980be718acfb1511f7"}, {"title": "From OpenAI Swarm to AgentKit", "topic": "agents", "type": "Article", "src": "Agents", "desc": "Why OpenAI retired its Swarm agents framework and what replaced it: the Agents SDK and AgentKit.", "url": "https://betterstack.com/community/guides/ai/openai-swarm-to-agentkit/"}, {"title": "Setting Up GitHub Pages", "topic": "coding", "type": "Guide", "src": "Beginner", "desc": "Step-by-step guide to hosting your first static website for free.", "url": "guide-github-pages.html"}, {"title": "Writing Better Prompts", "topic": "prompting", "type": "Guide", "src": "Prompt Eng.", "desc": "Practical tips for getting great results from AI tools like Claude.", "url": "guide-writing-better-prompts.html"}, {"title": "AI Fluency: Framework & Foundations", "topic": "prompting", "type": "Course", "src": "Anthropic", "desc": "A free course on working with AI effectively and safely, built around the 4D framework: Delegation, Description, Discernment and Diligence. 14 lessons, about 4 hours.", "url": "https://academy.claude.com/courses/ai-fluency-framework-foundations", "added": "2026-11-18T09:05"}, {"title": "Prompt Engineering Interactive Tutorial", "topic": "prompting", "type": "Course", "src": "Anthropic", "desc": "Anthropic's hands-on, 9-chapter prompting course, from beginner to advanced. Comes as notebooks or an easier Google Sheets version.", "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial", "added": "2026-11-18T09:05"}, {"title": "Prompt engineering best practices for ChatGPT", "topic": "prompting", "type": "Guide", "src": "OpenAI", "desc": "OpenAI's own short guide to writing clear, specific prompts and refining ChatGPT's answers.", "url": "https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt", "added": "2026-11-18T09:05"}, {"title": "Copilot Prompt Gallery", "topic": "prompting", "type": "Tool", "src": "Microsoft", "desc": "Microsoft's library of ready-made Copilot prompts for everyday work tasks, which you can adapt, save and share with your team.", "url": "https://adoption.microsoft.com/copilot/prompt-gallery", "added": "2026-11-18T09:05"}, {"title": "Gemini for Google Workspace: Prompting Guide 101", "topic": "prompting", "type": "Guide", "src": "Google", "desc": "Google's quick-start handbook (PDF) on writing effective prompts, with example prompts for different roles and everyday tasks.", "url": "https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf", "added": "2026-11-18T09:05"}, {"title": "Getting Started with AI Agents", "topic": "agents", "type": "Guide", "src": "AI Agents", "desc": "What AI agents are, how they work, and how to get started safely as an IT professional.", "url": "guide-ai-agents.html"}, {"title": "Getting Started with OpenClaw", "topic": "agents", "type": "Guide", "src": "OpenClaw", "desc": "Install and use OpenClaw — the open-source personal AI assistant that lives on your machine.", "url": "guide-openclaw.html"}, {"title": "Getting Started with Vibe Coding", "topic": "coding", "type": "Guide", "src": "Vibe Coding", "desc": "Build real software using plain English and AI tools — no coding experience required.", "url": "guide-vibe-coding.html"}, {"title": "Multi-Agent Systems & Swarms Explained", "topic": "agents", "type": "Guide", "src": "Agents", "desc": "The four patterns behind AI agent swarms, when multi-agent is worth it, and how to keep it safe.", "url": "guide-multi-agent-swarms.html"}, {"title": "Choosing an Agent Framework", "topic": "agents", "type": "Guide", "src": "Agents", "desc": "Microsoft Agent Framework, Claude Agent SDK, OpenAI Agents SDK, LangGraph and CrewAI compared for building agents.", "url": "guide-agent-frameworks.html"}, {"title": "Intro to AI for IT Pros", "topic": "basics", "type": "Video", "src": "AI Basics", "desc": "A 35-minute beginner's guide to generative AI — covering neural networks, tokens, prompting, RAG, hallucinations and more.", "url": "https://www.youtube.com/watch?v=O3F0AVd0nSc"}, {"title": "AI-Assisted Coding Tutorial", "topic": "coding", "type": "Video", "src": "AI Coding", "desc": "A hands-on tutorial showing how to build and ship projects faster using AI coding tools.", "url": "https://www.youtube.com/watch?v=wlpBCazAY9Q&t=153s"}, {"title": "Intro to Large Language Models", "topic": "basics", "type": "Video", "src": "LLM", "desc": "A 1-hour general-audience introduction to Large Language Models — the core technical component behind systems like ChatGPT, Claude, and Bard.", "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g"}, {"title": "What Is a Transformer?", "topic": "basics", "type": "Video", "src": "3Blue1Brown", "desc": "A visual walkthrough of the transformer, the architecture behind GPT and other LLMs: tokens, embeddings and predicting the next word.", "url": "https://www.youtube.com/watch?v=wjZofJX0v4M", "added": "2026-11-18T08:47"}, {"title": "Attention in transformers, step-by-step | Deep Learning Chapter 6", "topic": "basics", "type": "Video", "src": "3Blue1Brown", "desc": "How the attention mechanism lets each word in a sentence pick up meaning from the words around it, explained visually step by step.", "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc", "added": "2026-11-18T08:47"}, {"title": "Why Large Language Models Hallucinate", "topic": "basics", "type": "Video", "src": "IBM Technology", "desc": "Why LLMs sometimes state things that aren't true, and practical ways to reduce hallucinations.", "url": "https://www.youtube.com/watch?v=cfqtFvWOfg0", "added": "2026-11-18T08:47"}, {"title": "What is Retrieval-Augmented Generation (RAG)?", "topic": "basics", "type": "Video", "src": "IBM Technology", "desc": "How RAG connects an LLM to up-to-date or private sources, so its answers are more accurate and can cite where they came from.", "url": "https://www.youtube.com/watch?v=T-D1OfcDW1M", "added": "2026-11-18T08:47"}, {"title": "What is Ollama? Running Local LLMs Made Simple", "topic": "basics", "type": "Video", "src": "Local LLMs", "desc": "A quick-start guide to Ollama — run open-source LLMs like Llama, Mistral and Qwen on your own machine, privately and for free.", "url": "https://www.youtube.com/watch?v=5RIOQuHOihY&t=15s"}, {"title": "What are AI Agents?", "topic": "basics", "type": "Video", "src": "IBM Technology", "desc": "How AI has moved from single models to compound systems and agents that reason, plan and use tools and data to solve problems.", "url": "https://www.youtube.com/watch?v=F8NKVhkZZWI", "added": "2026-11-18T08:54"}, {"title": "Agents → Loops → Harness → Self-Improving Systems", "topic": "basics", "type": "Video", "src": "AI Agent Loops", "desc": "A two-hour lecture (in Russian) on AI agents, agent loops, harnesses and self-improving systems.", "url": "https://www.youtube.com/watch?v=vMhwv4nOJyg&t=1442s", "added": "2026-11-18T08:54"}, {"title": "OpenClaw Full Tutorial: Set up your first AI employee!", "topic": "agents", "type": "Video", "src": "OpenClaw", "desc": "A full walkthrough of OpenClaw — install it, configure your skills, and set up your first personal AI employee running on your own machine.", "url": "https://www.youtube.com/watch?v=mGcdxFPwBdU"}];
 const TOPICS = [
   ["basics", "AI Basics", "Start here: what generative AI and LLMs are, and how to run them locally."],
   ["tools", "AI Assistants", "The chat assistants worth knowing, and what each is good at."],
@@ -165,6 +239,7 @@ const TOPICS = [
 ];
 const QUICK = [
   ["all", "Everything A–Z", "Every resource on the hub, in alphabetical order."],
+  ["new", "Recently added", "The newest resources on the hub, latest first."],
   ["done", "My completed items", "Everything you've ticked off so far."],
   ["todo", "Still to do", "Everything you haven't ticked off yet."],
 ];
@@ -177,7 +252,15 @@ let done = {};
 try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { done = {}; }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
 
-const state = { view: "basics", type: "All", q: "" };
+const state = { view: "home", type: "All", q: "" };
+const STARTER = [["Intro to AI for IT Pros", "35 min"], ["Writing Better Prompts", "15–20 min"], ["Claude 101", "2.5 hours"], ["Getting Started with Claude Code", "Hands-on"]];
+const NEW_DAYS = 30;
+const PLURAL = { Tool: "tools", Course: "courses", Guide: "guides", Video: "videos", Article: "articles" };
+const HOME_ICO = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>';
+const byTitle = Object.fromEntries(ITEMS.map(i => [i.title, i]));
+const isNew = i => i.added && (Date.now() - Date.parse(i.added)) < NEW_DAYS * 864e5;
+const newest = () => ITEMS.map((i, ix) => [i, ix]).filter(([i]) => i.added)
+  .sort((a, b) => (b[0].added > a[0].added) - (b[0].added < a[0].added) || a[1] - b[1]).map(([i]) => i);
 const topicName = id => (TOPICS.find(t => t[0] === id) || [id, id])[1];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const $ = id => document.getElementById(id);
@@ -192,17 +275,19 @@ function viewItems() {
   if (v === "all") list = ITEMS.slice();
   else if (v === "done") list = ITEMS.filter(i => done[i.title]);
   else if (v === "todo") list = ITEMS.filter(i => !done[i.title]);
+  else if (v === "new") return newest();
   else list = ITEMS.filter(i => i.topic === v);
   if (v === "all" || v === "done" || v === "todo") list.sort((a, b) => a.title.localeCompare(b.title));
   return list;
 }
 
 function renderNav() {
-  const btn = (id, name, n) =>
-    `<button class="nav-btn" data-view="${id}" ${!state.q && state.view === id ? 'aria-current="true"' : ""}><span>${esc(name)}</span><span class="n">${n}</span></button>`;
-  $("topics").innerHTML = TOPICS.map(t => btn(t[0], t[1], ITEMS.filter(i => i.topic === t[0]).length)).join("");
+  const btn = (id, name, n, dot) =>
+    `<button class="nav-btn" data-view="${id}" ${!state.q && state.view === id ? 'aria-current="true"' : ""}><span class="nav-label">${dot ? `<span class="dot d-${id}" aria-hidden="true"></span>` : ""}${esc(name)}</span><span class="n">${n}</span></button>`;
+  $("homeNav").innerHTML = `<button class="nav-btn" data-view="home" ${!state.q && state.view === "home" ? 'aria-current="true"' : ""}><span class="nav-label"><span class="home-ico">${HOME_ICO}</span>Home</span></button>`;
+  $("topics").innerHTML = TOPICS.map(t => btn(t[0], t[1], ITEMS.filter(i => i.topic === t[0]).length, true)).join("");
   const doneN = ITEMS.filter(i => done[i.title]).length;
-  $("quick").innerHTML = btn("all", QUICK[0][1], ITEMS.length) + btn("done", QUICK[1][1], doneN) + btn("todo", QUICK[2][1], ITEMS.length - doneN);
+  $("quick").innerHTML = btn("all", QUICK[0][1], ITEMS.length) + btn("new", QUICK[1][1], ITEMS.filter(isNew).length) + btn("done", QUICK[2][1], doneN) + btn("todo", QUICK[3][1], ITEMS.length - doneN);
   $("bar").style.width = Math.round(doneN / ITEMS.length * 100) + "%";
   $("prog-text").textContent = `${doneN} of ${ITEMS.length}`;
 }
@@ -242,7 +327,7 @@ function renderMain() {
     return `<article class="row${d ? " done" : ""}">
       <button class="check" data-done="${esc(i.title)}" aria-pressed="${d}" aria-label="${d ? "Completed: " : "Mark complete: "}${esc(i.title)}">${TICK}</button>
       <div class="body">
-        <h2 class="title"><a href="${esc(i.url)}"${ext(i.url)}>${esc(i.title)}</a></h2>
+        <h2 class="title"><a href="${esc(i.url)}"${ext(i.url)}>${esc(i.title)}</a>${isNew(i) ? '<span class="new-tag">New</span>' : ""}</h2>
         <p class="desc" title="${esc(i.desc)}">${esc(i.desc)}</p>
       </div>
       <div class="meta">
@@ -256,8 +341,86 @@ function renderMain() {
   }).join("");
 }
 
+function renderHome() {
+  const doneN = ITEMS.filter(i => done[i.title]).length;
+  const guides = ITEMS.filter(i => /^guide-/.test(i.url));
+  const courses = ITEMS.filter(i => i.type === "Course").length;
+  const link = i => `href="${esc(i.url)}"${ext(i.url)}`;
+
+  let next = null, intro;
+  if (!doneN) { next = byTitle[STARTER[0][0]]; intro = "New here? Start with step 1:"; }
+  else {
+    next = STARTER.map(s => byTitle[s[0]]).find(i => i && !done[i.title])
+      || TOPICS.flatMap(t => ITEMS.filter(i => i.topic === t[0])).find(i => !done[i.title]);
+    intro = `${doneN} of ${ITEMS.length} done. Next on your list:`;
+  }
+  const cont = next
+    ? `<p>${intro}</p><p class="next">${esc(next.title)}</p><p>${[next.type, next.src, topicName(next.topic)].filter((x, ix, arr) => x && arr.indexOf(x) === ix).map(esc).join(" · ")}</p>
+       <a class="cta" ${link(next)}>${doneN ? "Continue" : "Start"} ${ARROW}</a>`
+    : `<p class="next">You've completed everything on the hub.</p><p>Nice work. Check back for new resources.</p>`;
+
+  const steps = STARTER.map(([title, len], ix) => {
+    const i = byTitle[title]; if (!i) return "";
+    const d = !!done[title];
+    return `<li><a class="step s-${ix + 1}${d ? " is-done" : ""}" ${link(i)}>
+      <span class="num" aria-hidden="true">${d ? "✓" : ix + 1}</span>
+      <span class="st">${esc(title)}${d ? '<span class="sr"> (completed)</span>' : ""}</span>
+      <span class="sf"><span class="chip chip-${i.type}">${i.type}</span><span>${len}</span></span></a></li>`;
+  }).join("");
+
+  const tiles = TOPICS.map(([id, name, blurb]) => {
+    const its = ITEMS.filter(i => i.topic === id);
+    const mix = TYPES.map(ty => [ty, its.filter(i => i.type === ty).length]).filter(x => x[1])
+      .sort((a, b) => b[1] - a[1]).map(([ty, n]) => `${n} ${n === 1 ? ty.toLowerCase() : PLURAL[ty]}`).join(" · ");
+    return `<a class="tile t-${id}" href="#${id}" data-view="${id}"><span class="tile-bar"></span>
+      <span class="tile-top"><span>${esc(name)}</span><span class="tile-n">${its.length}</span></span>
+      <span class="tile-b">${esc(blurb)}</span><span class="tile-mix">${mix}</span></a>`;
+  }).join("");
+
+  const recent = newest().slice(0, 6).map(i => `<li>${isNew(i) ? '<span class="new-tag">New</span>' : ""}
+    <span class="pt"><a ${link(i)}>${esc(i.title)}</a><span class="ps">${esc(topicName(i.topic))}</span></span>
+    <span class="chip chip-${i.type}">${i.type}</span></li>`).join("");
+  const glist = guides.map(i => `<li><span class="pt"><a ${link(i)}>${esc(i.title)}</a></span><span class="pr">${esc(topicName(i.topic))}</span></li>`).join("");
+
+  $("homeView").innerHTML = `
+    <section class="hero-row" aria-labelledby="welcome-h">
+      <div class="welcome">
+        <h1 id="welcome-h">Learn AI, one step at a time</h1>
+        <p class="lead">Free, hand-picked tools, courses, guides and videos, from your first prompt to building your own agents.</p>
+        <div class="stats">
+          <div><b>${ITEMS.length}</b><span>resources</span></div>
+          <div><b>${TOPICS.length}</b><span>topics</span></div>
+          <div><b>${courses}</b><span>courses</span></div>
+          <div><b>${guides.length}</b><span>step-by-step guides</span></div>
+        </div>
+      </div>
+      <aside class="continue" aria-labelledby="cont-h"><h2 id="cont-h">${doneN ? "Pick up where you left off" : "Your first step"}</h2>${cont}</aside>
+    </section>
+    <section aria-labelledby="start-h">
+      <div class="sec-head"><h2 class="sec" id="start-h">New here? Start with these four</h2><p>About 4 hours in total, all free</p></div>
+      <ol class="steps">${steps}</ol>
+    </section>
+    <section aria-labelledby="topics-h">
+      <div class="sec-head"><h2 class="sec" id="topics-h">Browse by topic</h2></div>
+      <div class="tiles">${tiles}</div>
+    </section>
+    <div class="duo">
+      <section class="panel new" aria-labelledby="new-h">
+        <div class="sec-head"><h2 class="sec" id="new-h">Recently added</h2><a href="#new" data-view="new" style="font-size:14px;font-weight:800">See all new</a></div>
+        <ul class="plist">${recent}</ul>
+      </section>
+      <section class="panel gd" aria-labelledby="guides-h">
+        <div class="sec-head"><h2 class="sec" id="guides-h">Tony's step-by-step guides</h2><span class="ps" style="font-size:14px;font-weight:700;color:var(--muted-2)">${guides.length} guides</span></div>
+        <ul class="plist">${glist}</ul>
+      </section>
+    </div>`;
+}
+
 function render() {
-  renderNav(); renderMain();
+  renderNav();
+  const home = !state.q && state.view === "home";
+  $("homeView").hidden = !home; $("listView").hidden = home;
+  if (home) renderHome(); else renderMain();
   const cur = document.querySelector('.nav-btn[aria-current="true"]');
   if (cur && window.innerWidth <= 820) { const l = cur.parentElement; l.scrollLeft = cur.offsetLeft - l.offsetLeft - (l.clientWidth - cur.offsetWidth) / 2; }
 }
@@ -271,7 +434,7 @@ function go(view, push) {
 
 document.addEventListener("click", e => {
   const v = e.target.closest("[data-view]");
-  if (v) { go(v.dataset.view, true); return; }
+  if (v) { e.preventDefault(); go(v.dataset.view, true); if (window.innerWidth > 820) window.scrollTo(0, 0); return; }
   const t = e.target.closest("[data-type]");
   if (t) { state.type = t.dataset.type; renderMain(); return; }
   const c = e.target.closest("[data-done]");
@@ -294,8 +457,8 @@ document.addEventListener("keydown", e => {
 
 function fromHash() {
   const h = (location.hash || "").slice(1);
-  const valid = TOPICS.concat(QUICK).some(t => t[0] === h);
-  state.view = valid ? h : "basics"; state.type = "All";
+  const valid = h === "home" || TOPICS.concat(QUICK).some(t => t[0] === h);
+  state.view = valid ? h : "home"; state.type = "All";
   render();
 }
 window.addEventListener("hashchange", fromHash);
