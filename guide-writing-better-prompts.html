@@ -245,6 +245,20 @@
     .tag-task    { background: #2ecc7120; color: #6ee7b7; border: 1px solid #2ecc7140; }
     .tag-format  { background: #f7a52520; color: #fcd34d; border: 1px solid #f7a52540; }
     .tag-example { background: #f7599a20; color: #f9a8d4; border: 1px solid #f7599a40; }
+    .tag-why     { background: #22d3ee20; color: #67e8f9; border: 1px solid #22d3ee40; }
+    .prompt-block {
+      background: #1e1e2e;
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin: 0.5rem 0 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .principle code, .guide-content > p code { background: #f3f0ff; color: #5b21b6; padding: 1px 6px; border-radius: 5px; font-size: 13px; }
     .anatomy-text {
       font-family: 'Courier New', Courier, monospace;
       font-size: 13px;
@@ -481,9 +495,10 @@
       <div class="guide-badge">📖 How-To Guide</div>
       <h1>Writing Better Prompts</h1>
       <div class="guide-meta">
-        <span>⏱️ 10–15 minutes</span>
+        <span>⏱️ 15–20 minutes</span>
         <span>🟢 Beginner friendly</span>
         <span>🤖 Works with any AI tool</span>
+        <span>🗓️ Updated November 2026</span>
       </div>
     </div>
   </section>
@@ -493,11 +508,11 @@
 
     <article class="guide-content">
 
-      <p>The quality of the response you get from an AI tool like Claude, ChatGPT, or Copilot is almost entirely determined by the quality of your prompt. A vague question gets a vague answer. A well-structured prompt gets something genuinely useful. This guide walks you through the key principles with real before-and-after examples.</p>
+      <p>The quality of the response you get from an AI tool like Claude, ChatGPT or Copilot depends heavily on the quality of your prompt. A vague question gets a vague answer. A clear, well-briefed prompt gets something genuinely useful. This guide walks you through the key principles with real before-and-after examples.</p>
 
       <div class="info-box">
         <span style="font-size:16px;flex-shrink:0;">🎯</span>
-        <p><strong>What you'll learn:</strong> How to structure prompts, give the right context, set the tone, use examples effectively, and avoid the most common mistakes.</p>
+        <p><strong>What you'll learn:</strong> How to structure a prompt, give the right context (including <em>why</em> you want something), use examples well, lay out longer prompts, get better answers to hard problems, and avoid the most common mistakes.</p>
       </div>
 
       <!-- ANATOMY -->
@@ -506,7 +521,7 @@
         Anatomy of a great prompt
       </h2>
 
-      <p>Most great prompts share the same building blocks. You don't need all of them every time, but understanding each one helps you know what to include when.</p>
+      <p>Most great prompts share the same building blocks. You don't need all of them every time, but knowing each one helps you decide what to include.</p>
 
       <div class="anatomy-block">
         <div class="anatomy-line">
@@ -522,18 +537,22 @@
           <span class="anatomy-text">Write a step-by-step guide for setting up GitHub Pages.</span>
         </div>
         <div class="anatomy-line">
+          <span class="anatomy-tag tag-why">Why</span>
+          <span class="anatomy-text">It'll go on our intranet, and people will follow it on their own without anyone to ask.</span>
+        </div>
+        <div class="anatomy-line">
           <span class="anatomy-tag tag-format">Format</span>
-          <span class="anatomy-text">Use numbered steps, keep each step to 2–3 sentences, and include a tip box at the end.</span>
+          <span class="anatomy-text">Use numbered steps, keep each step to 2–3 sentences, and finish with a short troubleshooting tip.</span>
         </div>
         <div class="anatomy-line">
           <span class="anatomy-tag tag-example">Example</span>
-          <span class="anatomy-text">Here's an example of the tone I want: "Click the green button in the top right — it's the one labelled New Repository."</span>
+          <span class="anatomy-text">Here's the tone I want: "Click the green button in the top right — it's the one labelled New repository."</span>
         </div>
       </div>
 
       <div class="tip">
         <span style="font-size:16px;flex-shrink:0;">💡</span>
-        <p>You don't need all five parts every time. For a quick question, just the <strong>task</strong> might be enough. For complex or high-stakes outputs, add as many parts as you can.</p>
+        <p>You don't need all six parts every time. For a quick question, just the <strong>task</strong> might be enough. For complex or important work, add as many parts as you can. A quick test: if you handed your prompt to a colleague who knows nothing about the task, would they know exactly what to do? If they'd be confused, the AI will be too.</p>
       </div>
 
       <!-- PRINCIPLE 1 -->
@@ -549,7 +568,7 @@
           <div class="principle-num">1</div>
           <h3>Say exactly what you want</h3>
         </div>
-        <p>Include the topic, the purpose, the audience, and any constraints. The more specific you are, the less guessing the AI has to do.</p>
+        <p>Include the topic, the purpose, the audience and any constraints. The more specific you are, the less guessing the AI has to do. If you want something ambitious, say so: AI tools often do the minimum unless you ask for more.</p>
         <div class="compare">
           <div class="compare-box compare-bad">
             <div class="compare-label">❌ Vague</div>
@@ -580,17 +599,35 @@
         </div>
       </div>
 
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">3</div>
+          <h3>Say what to do, not just what to avoid</h3>
+        </div>
+        <p>"Don't" instructions tell the AI what you <em>don't</em> want but leave it guessing about what you <em>do</em> want. Describe the result you're after instead.</p>
+        <div class="compare">
+          <div class="compare-box compare-bad">
+            <div class="compare-label">❌ Only a "don't"</div>
+            <p>"Don't use bullet points or jargon."</p>
+          </div>
+          <div class="compare-box compare-good">
+            <div class="compare-label">✅ Says what to do</div>
+            <p>"Write it as two short paragraphs of everyday language, the way you'd explain it to a friend over coffee."</p>
+          </div>
+        </div>
+      </div>
+
       <!-- PRINCIPLE 2 -->
       <h2 id="give-context">
         <span class="h2-icon" style="background:#fff0d4;">🗂️</span>
         Principle 2 — Give context
       </h2>
 
-      <p>Context helps the AI tailor its response to your actual situation. Think of it like briefing a colleague — the more background you give them, the better their output will be.</p>
+      <p>Context helps the AI tailor its response to your actual situation. Think of it like briefing a new colleague: the more background you give them, the better their work will be.</p>
 
       <div class="principle">
         <div class="principle-header">
-          <div class="principle-num">3</div>
+          <div class="principle-num">4</div>
           <h3>Explain who the output is for</h3>
         </div>
         <p>The same question gets very different answers depending on the audience. Always mention who will be reading or using the output.</p>
@@ -601,17 +638,17 @@
           </div>
           <div class="compare-box compare-good">
             <div class="compare-label">✅ With audience</div>
-            <p>"Explain what a DNS record is to someone who works in HR and has no IT background. Avoid jargon and use a simple analogy."</p>
+            <p>"Explain what a DNS record is to someone who works in HR and has no IT background. Use a simple everyday analogy."</p>
           </div>
         </div>
       </div>
 
       <div class="principle">
         <div class="principle-header">
-          <div class="principle-num">4</div>
+          <div class="principle-num">5</div>
           <h3>Share relevant background information</h3>
         </div>
-        <p>If you're working on something specific — a project, a document, a system — tell the AI about it. You can even paste in existing text for it to work with.</p>
+        <p>If you're working on something specific — a project, a document, a system — tell the AI about it. Most tools now let you attach files or screenshots directly, which is quicker and more reliable than describing them.</p>
         <div class="compare">
           <div class="compare-box compare-bad">
             <div class="compare-label">❌ No background</div>
@@ -624,20 +661,38 @@
         </div>
       </div>
 
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">6</div>
+          <h3>Explain <em>why</em>, not just what</h3>
+        </div>
+        <p>When you give the reason behind an instruction, the AI can apply it sensibly to situations you didn't spell out. A bare rule only covers the exact case you wrote down.</p>
+        <div class="compare">
+          <div class="compare-box compare-bad">
+            <div class="compare-label">❌ Rule only</div>
+            <p>"Keep sentences short."</p>
+          </div>
+          <div class="compare-box compare-good">
+            <div class="compare-label">✅ Rule plus reason</div>
+            <p>"Keep sentences short — many of our readers use English as a second language and read these on their phones."</p>
+          </div>
+        </div>
+      </div>
+
       <!-- PRINCIPLE 3 -->
       <h2 id="assign-role">
         <span class="h2-icon" style="background:#ffe0ec;">🎭</span>
         Principle 3 — Assign a role
       </h2>
 
-      <p>Telling the AI to act as a specific type of expert dramatically improves the quality and relevance of the response. It sets the right tone, vocabulary, and level of depth.</p>
+      <p>Telling the AI what kind of expert to be helps set the tone, vocabulary and level of depth. A single sentence is enough. A role works best alongside good context, not instead of it: "for HR staff with no IT background" usually matters more than an impressive job title.</p>
 
       <div class="principle">
         <div class="principle-header">
-          <div class="principle-num">5</div>
-          <h3>Use "You are a..." to set the persona</h3>
+          <div class="principle-num">7</div>
+          <h3>Use "You are a..." to set the perspective</h3>
         </div>
-        <p>Start your prompt by assigning a role. This works especially well for writing tasks, technical explanations, and training content.</p>
+        <p>Start your prompt by assigning a role. This works especially well for writing tasks, technical explanations, reviews and training content.</p>
         <div class="compare">
           <div class="compare-box compare-bad">
             <div class="compare-label">❌ No role</div>
@@ -645,7 +700,7 @@
           </div>
           <div class="compare-box compare-good">
             <div class="compare-label">✅ With role</div>
-            <p>"You are an experienced Microsoft certified trainer. Create a 5-question multiple choice quiz testing basic Azure fundamentals. Include the correct answers at the end."</p>
+            <p>"You are an experienced Microsoft certified trainer. Create a 5-question multiple choice quiz testing basic Azure fundamentals for people starting the AZ-900 course. Include the correct answers at the end."</p>
           </div>
         </div>
       </div>
@@ -661,8 +716,9 @@
           <tr><td>Writing training content</td><td>Experienced IT trainer writing for beginners</td></tr>
           <tr><td>Simplifying technical docs</td><td>Technical writer specialising in plain English</td></tr>
           <tr><td>Reviewing a document</td><td>Senior editor with an eye for clarity and structure</td></tr>
-          <tr><td>Solving a technical problem</td><td>Senior cloud engineer with 10 years of Azure experience</td></tr>
+          <tr><td>Solving a technical problem</td><td>Senior cloud engineer with deep Azure experience</td></tr>
           <tr><td>Writing a professional email</td><td>Senior IT manager communicating with stakeholders</td></tr>
+          <tr><td>Stress-testing a plan</td><td>Sceptical reviewer looking for risks and gaps</td></tr>
         </tbody>
       </table>
 
@@ -676,10 +732,10 @@
 
       <div class="principle">
         <div class="principle-header">
-          <div class="principle-num">6</div>
+          <div class="principle-num">8</div>
           <h3>Show, don't just tell</h3>
         </div>
-        <p>If you have an existing document, email, or style you want the AI to match, paste it in and say "write something in this style." This works better than trying to describe the style in words.</p>
+        <p>If you have an existing document, email or style you want the AI to match, paste it in and say "write something in this style." This works better than trying to describe the style in words.</p>
         <div class="compare">
           <div class="compare-box compare-bad">
             <div class="compare-label">❌ No example</div>
@@ -690,19 +746,78 @@
             <p>"Write a guide step in this style: 'Head to Settings — it's the gear icon on the left sidebar. Don't worry if yours looks slightly different; the layout can vary depending on your plan.'"</p>
           </div>
         </div>
+        <p>For repeated tasks, give <strong>3–5 examples</strong> that differ from each other. With only one, the AI may copy it too closely — the same length, the same opening words, even the same topic.</p>
       </div>
 
       <!-- PRINCIPLE 5 -->
-      <h2 id="iterate">
-        <span class="h2-icon" style="background:#f0e8ff;">🔁</span>
-        Principle 5 — Iterate and refine
+      <h2 id="structure">
+        <span class="h2-icon" style="background:#ddeeff;">🧱</span>
+        Principle 5 — Structure longer prompts
       </h2>
 
-      <p>You don't have to get the perfect prompt first time. The best results often come from a short back-and-forth conversation where you build on the AI's first response.</p>
+      <p>Once a prompt includes pasted text, documents or several instructions, the AI needs to tell them apart. Clear structure stops it mistaking your source material for your instructions.</p>
 
       <div class="principle">
         <div class="principle-header">
-          <div class="principle-num">7</div>
+          <div class="principle-num">9</div>
+          <h3>Label the parts of your prompt</h3>
+        </div>
+        <p>Use headings, or simple tags like <code>&lt;document&gt;</code> and <code>&lt;instructions&gt;</code>, to separate each part. The tag names don't matter much; just keep them descriptive and consistent.</p>
+        <pre class="prompt-block">&lt;document&gt;
+[paste the policy here]
+&lt;/document&gt;
+
+&lt;instructions&gt;
+Summarise this policy for new starters in 5 bullet points.
+Flag anything that needs action in their first week.
+&lt;/instructions&gt;</pre>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">10</div>
+          <h3>Long documents first, question last</h3>
+        </div>
+        <p>When you paste or attach something long, put it at the top and your question or instructions at the end. For long reports, it also helps to ask the AI to pick out the most relevant quotes first and then answer based on them.</p>
+      </div>
+
+      <!-- PRINCIPLE 6 -->
+      <h2 id="think">
+        <span class="h2-icon" style="background:#fff0d4;">🧠</span>
+        Principle 6 — Let it think on hard problems
+      </h2>
+
+      <p>For analysis, troubleshooting, planning or anything with several steps, the AI gives better answers when it works through the problem before committing to a conclusion.</p>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">11</div>
+          <h3>Ask it to reason, then check its work</h3>
+        </div>
+        <p>Many tools now have a "thinking", "extended thinking" or "reasoning" mode — switch it on for tricky problems. If yours doesn't, ask it to think things through before answering. Asking it to check the answer against your requirements at the end catches a lot of mistakes.</p>
+        <div class="compare">
+          <div class="compare-box compare-bad">
+            <div class="compare-label">❌ Straight to an answer</div>
+            <p>"Which licence should we buy?"</p>
+          </div>
+          <div class="compare-box compare-good">
+            <div class="compare-label">✅ Room to think</div>
+            <p>"We're a 40-person charity using M365 Business Basic and need Intune for laptops. Think through the licence options and their trade-offs, then recommend one. Before you finish, check your recommendation covers every requirement I listed."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRINCIPLE 7 -->
+      <h2 id="iterate">
+        <span class="h2-icon" style="background:#f0e8ff;">🔁</span>
+        Principle 7 — Iterate and refine
+      </h2>
+
+      <p>You don't have to get the perfect prompt first time. The best results often come from a short back-and-forth where you build on the AI's first response.</p>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">12</div>
           <h3>Use follow-up prompts to refine</h3>
         </div>
         <p>If the first response isn't quite right, don't start over. Tell the AI what to change. Be specific about what you liked and what needs adjusting.</p>
@@ -712,6 +827,18 @@
           <li><span class="check-circle">→</span> "Add a practical example to point number 3."</li>
           <li><span class="check-circle">→</span> "Can you turn this into a table instead?"</li>
           <li><span class="check-circle">→</span> "Great — now adapt this for a technical audience."</li>
+        </ul>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">13</div>
+          <h3>Let the AI help you write the prompt</h3>
+        </div>
+        <p>If you're not sure what to include, ask the AI to interview you first, or to improve a prompt you've drafted. It's often good at spotting what's missing.</p>
+        <ul class="checklist" style="margin-top:0.5rem;">
+          <li><span class="check-circle">→</span> "Before you start, ask me any questions you need answered to do this well."</li>
+          <li><span class="check-circle">→</span> "Here's a prompt I've written. How would you improve it so the result is more useful?"</li>
         </ul>
       </div>
 
@@ -729,17 +856,17 @@
       <div class="principle">
         <div class="principle-header">
           <div class="principle-num" style="background:linear-gradient(135deg,#f7a525,#f7599a);">!</div>
-          <h3>Being too polite or too casual</h3>
+          <h3>Being so brief that the detail goes missing</h3>
         </div>
-        <p>You don't need to say "please" and "thank you" (it won't make the AI work harder) but equally, don't be so brief that you strip out important detail. Aim for clear and direct.</p>
+        <p>Short prompts feel efficient, but they leave the AI guessing. Politeness is fine either way — what matters is that the task, audience and constraints are all there.</p>
       </div>
 
       <div class="principle">
         <div class="principle-header">
           <div class="principle-num" style="background:linear-gradient(135deg,#f7a525,#f7599a);">!</div>
-          <h3>Asking too many things at once</h3>
+          <h3>Cramming unrelated tasks into one prompt</h3>
         </div>
-        <p>If you need five different things, consider sending five separate prompts. Combining too many tasks in one go often results in the AI doing all of them poorly rather than any of them well.</p>
+        <p>Today's AI tools handle multi-part requests well when you number them clearly. But if the tasks are unrelated, or each one is big, split them up or work through them one step at a time so you can check each result before moving on.</p>
       </div>
 
       <div class="principle">
@@ -747,12 +874,20 @@
           <div class="principle-num" style="background:linear-gradient(135deg,#f7a525,#f7599a);">!</div>
           <h3>Accepting the first response without reviewing it</h3>
         </div>
-        <p>AI can produce confident-sounding answers that contain errors or miss the point. Always read the response critically, fact-check anything important, and don't be afraid to push back.</p>
+        <p>AI can produce confident-sounding answers that contain errors or miss the point. Read the response critically, fact-check anything important, and push back. It helps to ask it to say when it isn't sure, and to point to where its information comes from.</p>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num" style="background:linear-gradient(135deg,#f7a525,#f7599a);">!</div>
+          <h3>Starting from scratch every time</h3>
+        </div>
+        <p>If you keep typing the same background ("I work in IT support for a 200-person firm…"), save it. Most tools have custom instructions, Projects or saved prompts, so your context is there every time without retyping it.</p>
       </div>
 
       <div class="warning">
         <span style="font-size:16px;flex-shrink:0;">⚠️</span>
-        <p><strong>Important:</strong> AI tools can occasionally get facts wrong or make things up. Always verify important information from a trusted source before using it in official documents or communications.</p>
+        <p><strong>Important:</strong> AI tools can get facts wrong or make things up (known as "hallucinating"). Always verify important information from a trusted source before using it in official documents or communications. The <a href="index.html#basics">AI Basics</a> videos on why LLMs hallucinate and on RAG explain why this happens.</p>
       </div>
 
       <!-- QUICK REFERENCE -->
@@ -774,11 +909,11 @@
           </tr>
           <tr>
             <td>Write a guide</td>
-            <td><code>You are an IT trainer. Write a step-by-step guide for [task]. Audience: [description]. Format: numbered steps.</code></td>
+            <td><code>You are an IT trainer. Write a step-by-step guide for [task]. Audience: [description]. It will be used [where/why]. Format: numbered steps.</code></td>
           </tr>
           <tr>
             <td>Summarise a document</td>
-            <td><code>Summarise the key points from the following text in [X] bullet points. Focus on [specific aspect]: [paste text]</code></td>
+            <td><code>[attach or paste the document first] Summarise the key points in [X] bullet points for [audience]. Focus on [specific aspect].</code></td>
           </tr>
           <tr>
             <td>Write an email</td>
@@ -786,11 +921,19 @@
           </tr>
           <tr>
             <td>Create a quiz</td>
-            <td><code>Create a [X]-question multiple choice quiz on [topic] for [audience]. Include answers at the end.</code></td>
+            <td><code>Create a [X]-question multiple choice quiz on [topic] for [audience]. Include answers and a one-line explanation for each at the end.</code></td>
           </tr>
           <tr>
             <td>Review/improve writing</td>
             <td><code>Review the following text for clarity and tone. Suggest improvements but keep the overall structure: [paste text]</code></td>
+          </tr>
+          <tr>
+            <td>Solve a tricky problem</td>
+            <td><code>[describe the situation and what you've tried] Think through the likely causes, then suggest fixes in order of likelihood.</code></td>
+          </tr>
+          <tr>
+            <td>Get help with the prompt</td>
+            <td><code>I want to [goal]. Ask me any questions you need answered first, then write the best prompt for it.</code></td>
           </tr>
         </tbody>
       </table>
@@ -803,9 +946,9 @@
       <p>The best way to improve at prompting is simply to practise. Try these next steps:</p>
       <ul class="checklist">
         <li><span class="check-circle">→</span> Take one task you do regularly at work and try writing a prompt for it</li>
-        <li><span class="check-circle">→</span> Visit the <strong>Anthropic Academy</strong> for free prompt engineering courses</li>
-        <li><span class="check-circle">→</span> Read Anthropic's official prompting documentation at <strong>docs.claude.ai</strong></li>
-        <li><span class="check-circle">→</span> Explore the <strong>Training Links</strong> section of this hub for more AI learning resources</li>
+        <li><span class="check-circle">→</span> Visit the <a href="resources-anthropic-academy.html"><strong>Anthropic Academy</strong></a> page for free prompt engineering courses</li>
+        <li><span class="check-circle">→</span> Read Anthropic's <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener noreferrer"><strong>prompting best practices</strong></a> (written for developers, but most tips apply to everyday use)</li>
+        <li><span class="check-circle">→</span> Explore <a href="index.html#courses"><strong>Courses &amp; Academies</strong></a> on this hub for more AI learning resources</li>
       </ul>
 
       <div class="success-box">
@@ -826,7 +969,9 @@
           <li><a href="#give-context"><span class="toc-dot"></span>2. Give context</a></li>
           <li><a href="#assign-role"><span class="toc-dot"></span>3. Assign a role</a></li>
           <li><a href="#use-examples"><span class="toc-dot"></span>4. Use examples</a></li>
-          <li><a href="#iterate"><span class="toc-dot"></span>5. Iterate & refine</a></li>
+          <li><a href="#structure"><span class="toc-dot"></span>5. Structure longer prompts</a></li>
+          <li><a href="#think"><span class="toc-dot"></span>6. Let it think</a></li>
+          <li><a href="#iterate"><span class="toc-dot"></span>7. Iterate &amp; refine</a></li>
           <li><a href="#mistakes"><span class="toc-dot"></span>Common mistakes</a></li>
           <li><a href="#quickref"><span class="toc-dot"></span>Quick reference</a></li>
           <li><a href="#next"><span class="toc-dot"></span>What next?</a></li>
@@ -849,17 +994,17 @@
         <h4>✅ Prompt checklist</h4>
         <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Clear task defined</div>
         <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Audience specified</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Reason (why) explained</div>
         <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Role assigned</div>
-        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Format requested</div>
-        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Length specified</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Format and length requested</div>
         <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Example provided</div>
         <div class="score-result" id="score-result"></div>
       </div>
 
       <div class="sidebar-card" style="margin-top:1rem;">
         <h4>Useful Links</h4>
-        <a href="https://anthropic.com" target="_blank" rel="noopener noreferrer" class="resource-link">🤖 Anthropic Academy</a>
-        <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener noreferrer" class="resource-link">📚 Prompting docs</a>
+        <a href="resources-anthropic-academy.html" class="resource-link">🤖 Anthropic Academy</a>
+        <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener noreferrer" class="resource-link">📚 Prompting best practices</a>
         <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="resource-link">💬 Try Claude</a>
       </div>
 
