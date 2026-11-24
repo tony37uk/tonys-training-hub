@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How-To Guide: Getting Started with Hermes Agent | Tony's Training Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f4f6fb;
+      color: #1a1a2e;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8eaf0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(79,142,247,0.07);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .nav-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #4f8ef7;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6b7280;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: #a259f7; }
+
+    /* ── HERO ── */
+    .guide-hero {
+      background: linear-gradient(135deg, #a259f7 0%, #4f8ef7 60%, #2ecc71 100%);
+      padding: 3rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .guide-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .guide-hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+    .guide-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .guide-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .guide-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .guide-layout {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ── CONTENT ── */
+    .guide-content { min-width: 0; }
+
+    .guide-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 2.25rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .guide-content h2:first-child { margin-top: 0; }
+    .h2-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .guide-content p {
+      font-size: 15px;
+      color: #374151;
+      margin-bottom: 1rem;
+    }
+
+    /* ── PRINCIPLE CARDS ── */
+    .principle {
+      background: #fff;
+      border: 1px solid #e8eaf0;
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .principle-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.75rem;
+    }
+    .principle-num {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a259f7, #4f8ef7);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .principle h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .principle p {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 0.75rem;
+      line-height: 1.65;
+    }
+    .principle p:last-child { margin-bottom: 0; }
+
+    /* ── BEFORE / AFTER COMPARISON ── */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 0.75rem 0;
+    }
+    .compare-box {
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .compare-bad  { background: #fff1f2; border: 1px solid #fecdd3; }
+    .compare-good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .compare-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .compare-bad  .compare-label { color: #be123c; }
+    .compare-good .compare-label { color: #15803d; }
+    .compare-box p {
+      font-size: 13px !important;
+      color: #374151 !important;
+      margin: 0 !important;
+      font-style: italic;
+      line-height: 1.55 !important;
+    }
+
+    /* ── PROMPT ANATOMY ── */
+    .anatomy-block {
+      background: #1e1e2e;
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      margin: 0.75rem 0 1rem;
+      position: relative;
+    }
+    .anatomy-line {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .anatomy-line:last-child { margin-bottom: 0; }
+    .anatomy-tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 50px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .tag-role    { background: #a259f720; color: #c084fc; border: 1px solid #a259f740; }
+    .tag-context { background: #4f8ef720; color: #7dd3fc; border: 1px solid #4f8ef740; }
+    .tag-task    { background: #2ecc7120; color: #6ee7b7; border: 1px solid #2ecc7140; }
+    .tag-format  { background: #f7a52520; color: #fcd34d; border: 1px solid #f7a52540; }
+    .tag-example { background: #f7599a20; color: #f9a8d4; border: 1px solid #f7599a40; }
+    .tag-why     { background: #22d3ee20; color: #67e8f9; border: 1px solid #22d3ee40; }
+    .prompt-block {
+      background: #1e1e2e;
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin: 0.5rem 0 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .principle code, .guide-content > p code { background: #f3f0ff; color: #5b21b6; padding: 1px 6px; border-radius: 5px; font-size: 13px; }
+    .anatomy-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .tip, .warning, .success-box, .info-box {
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .tip         { background: #eff6ff; border-left: 4px solid #4f8ef7; color: #1e3a5f; }
+    .warning     { background: #fff7ed; border-left: 4px solid #f7a525; color: #7c3a00; }
+    .success-box { background: #f0fdf4; border-left: 4px solid #2ecc71; color: #14532d; }
+    .info-box    { background: #faf5ff; border-left: 4px solid #a259f7; color: #4a1d96; }
+    .tip p, .warning p, .success-box p, .info-box p { font-size: 14px !important; color: inherit !important; margin: 0 !important; }
+
+    /* ── QUICK REFERENCE TABLE ── */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 0.75rem 0 1rem;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e8eaf0;
+    }
+    .ref-table th {
+      background: #f8f9ff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6b7280;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid #e8eaf0;
+    }
+    .ref-table td {
+      padding: 10px 14px;
+      color: #374151;
+      border-bottom: 1px solid #f0f2f7;
+      vertical-align: top;
+    }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table tr:hover td { background: #f8f9ff; }
+    .ref-table code {
+      background: #f0f4ff;
+      color: #4f8ef7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; margin: 0.75rem 0 1rem; }
+    .checklist li {
+      font-size: 14px;
+      color: #374151;
+      padding: 7px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      border-bottom: 1px dashed #e8eaf0;
+      line-height: 1.55;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #d4f5e2;
+      color: #1a7a42;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    /* ── SIDEBAR ── */
+    .guide-sidebar { position: sticky; top: 78px; }
+    .sidebar-card {
+      background: #fff;
+      border: 1px solid #e8eaf0;
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar-card h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 6px; }
+    .toc-list a {
+      font-size: 13px;
+      color: #6b7280;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.15s;
+      line-height: 1.4;
+    }
+    .toc-list a:hover { color: #a259f7; }
+    .toc-dot { width: 6px; height: 6px; border-radius: 50%; background: #e8eaf0; flex-shrink: 0; }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4f8ef7;
+      text-decoration: none;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.15s;
+    }
+    .resource-link:last-child { border-bottom: none; }
+    .resource-link:hover { color: #a259f7; }
+
+    .difficulty-bar { display: flex; gap: 5px; margin-top: 6px; }
+    .diff-dot { width: 28px; height: 8px; border-radius: 50px; }
+    .diff-filled { background: #a259f7; }
+    .diff-empty  { background: #e8eaf0; }
+
+    /* ── PROMPT SCORE WIDGET ── */
+    .score-widget {
+      background: linear-gradient(135deg, #faf5ff, #eff6ff);
+      border: 1px solid #e0d7ff;
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .score-widget h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a1d96;
+      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .score-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #4b5563;
+    }
+    .score-item:last-child { margin-bottom: 0; }
+    .score-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: #e0d7ff;
+      border: 1px solid #c4b5fd;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #7c3aed;
+      transition: background 0.15s;
+    }
+    .score-check.checked { background: #a259f7; border-color: #a259f7; color: #fff; }
+    .score-result {
+      margin-top: 12px;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #4a1d96;
+      padding: 8px;
+      background: rgba(162,89,247,0.1);
+      border-radius: 8px;
+      display: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 13px;
+      color: #9ca3af;
+      border-top: 1px solid #e8eaf0;
+      background: #fff;
+    }
+    footer a { color: #a259f7; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .guide-layout { grid-template-columns: 1fr; padding: 1.5rem 1rem 3rem; }
+      .guide-sidebar { position: static; }
+      .guide-hero { padding: 2rem 1rem 2.5rem; }
+      .compare { grid-template-columns: 1fr; }
+    }
+
+    /* AI Security guide */
+    .guide-hero { background: linear-gradient(135deg, #0d9488 0%, #0f766e 45%, #4338ca 100%); }
+    .principle-num.sec-num { background: linear-gradient(135deg, #dc2626, #9f1239); }
+    .tl { display: inline-block; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+    .tl-green { background: #dcfce7; color: #166534; }
+    .tl-amber { background: #fef3c7; color: #92400e; }
+    .tl-red   { background: #fee2e2; color: #991b1b; }
+    .ref-table td { vertical-align: top; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">🚀 Tony's Training Hub</a>
+      <a href="index.html#agents" class="nav-back">← Back to Agents &amp; Swarms</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="guide-hero">
+    <div class="guide-hero-inner">
+      <div class="guide-badge">⚕️ How-To Guide</div>
+      <h1>Getting Started with Hermes Agent</h1>
+      <div class="guide-meta">
+        <span>⏱️ 20–30 minutes</span>
+        <span>🟡 Intermediate</span>
+        <span>🖥️ Self-hosted on your machine or a server</span>
+        <span>🗓️ Updated November 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <div class="guide-layout">
+
+    <article class="guide-content">
+
+      <p>Hermes Agent is a free, open-source AI agent from Nous Research that lives on your computer or a server, remembers what it learns about you and your work, and gets better at repeated tasks over time. You can chat to it in a terminal, in its desktop app, or from the messaging apps you already use.</p>
+
+      <div class="info-box">
+        <span style="font-size:16px;flex-shrink:0;">💡</span>
+        <p><strong>In one sentence:</strong> Hermes is a personal AI agent that writes its own "skills" from experience — so the tenth time you ask it to do something, it does it better than the first.</p>
+      </div>
+
+      <!-- WHAT IS -->
+      <h2 id="what">
+        <span class="h2-icon" style="background:#e8faf7;">⚕️</span>
+        What is Hermes Agent?
+      </h2>
+
+      <p>Hermes Agent was released by <strong>Nous Research</strong> — the AI lab behind the open Hermes family of language models — in February 2026, under the MIT licence. Like OpenClaw, it's a persistent agent that can take real actions: run commands, browse the web, manage files, send messages and run scheduled jobs. Its big difference is a built-in <strong>learning loop</strong>.</p>
+
+      <table class="ref-table">
+        <thead>
+          <tr><th>Feature</th><th>What it means for you</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Self-improving skills</strong></td><td>After a complex task, Hermes can write down how it did it as a reusable skill, and refine that skill each time it's used.</td></tr>
+          <tr><td><strong>Persistent memory</strong></td><td>It keeps short notes about you and your work, plus searchable history of past sessions, so you don't repeat yourself.</td></tr>
+          <tr><td><strong>Talk to it anywhere</strong></td><td>Terminal, desktop app, or 20+ messaging platforms through one gateway — including Telegram, Discord, Slack, WhatsApp, Signal, Microsoft Teams and email.</td></tr>
+          <tr><td><strong>Scheduled automations</strong></td><td>Built-in cron jobs that deliver results to whichever app you choose — a morning briefing in Telegram, say.</td></tr>
+          <tr><td><strong>Your choice of model</strong></td><td>Nous Portal, OpenRouter, OpenAI or any compatible endpoint, including local models.</td></tr>
+          <tr><td><strong>Run it safely somewhere else</strong></td><td>Commands can run locally, in Docker, over SSH or in cloud sandboxes such as Modal and Daytona — not just on your laptop.</td></tr>
+          <tr><td><strong>MCP and shared skills</strong></td><td>Connects to MCP servers, and its skills follow the open agentskills.io format, so they're portable between agents.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- PREREQS -->
+      <h2 id="before">
+        <span class="h2-icon" style="background:#fff0d4;">📋</span>
+        Before you start
+      </h2>
+
+      <table class="ref-table">
+        <thead>
+          <tr><th style="width:170px;">Requirement</th><th>Detail</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Operating system</td><td>macOS, Linux, Windows (native or WSL2), or Android via Termux.</td></tr>
+          <tr><td>An AI model</td><td>A Nous Portal account, or an API key for OpenRouter, OpenAI or another compatible provider. The model needs a context window of at least 64K tokens.</td></tr>
+          <tr><td>Somewhere safe to run it</td><td>Strongly recommended: Docker on your machine, or a small server (a basic VPS is enough). Avoid running it directly on a laptop that holds your work credentials.</td></tr>
+          <tr><td>A chat app (optional)</td><td>Telegram is the easiest to start with if you want to message Hermes from your phone.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip">
+        <span style="font-size:16px;flex-shrink:0;">💰</span>
+        <p><strong>Costs:</strong> the software is free and open source. You pay for the AI model you connect — either through your own API key, or a paid Nous Portal plan, which bundles model access with extra tools like web search, image generation and text-to-speech.</p>
+      </div>
+
+      <!-- INSTALL -->
+      <h2 id="install">
+        <span class="h2-icon" style="background:#ddeeff;">⬇️</span>
+        Installation
+      </h2>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">1</div>
+          <h3>Option 1 — Hermes Desktop (easiest)</h3>
+        </div>
+        <p>On Windows or macOS, download the Hermes Desktop installer from <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener noreferrer">hermes-agent.nousresearch.com</a> and run it. It installs both the desktop app and the command-line tool.</p>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">2</div>
+          <h3>Option 2 — Command line</h3>
+        </div>
+        <pre class="prompt-block"># macOS, Linux and WSL2
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+
+# Windows (PowerShell)
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+
+# Then reload your shell (macOS / Linux)
+source ~/.bashrc     # or: source ~/.zshrc</pre>
+      </div>
+
+      <!-- FIRST RUN -->
+      <h2 id="first-run">
+        <span class="h2-icon" style="background:#f0e8ff;">🚀</span>
+        First run
+      </h2>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">3</div>
+          <h3>Run the setup wizard</h3>
+        </div>
+        <pre class="prompt-block">hermes setup            # asks how you want to power Hermes
+hermes setup --portal   # or: sign in with Nous Portal in one step</pre>
+        <p style="margin-top:0.8rem;">The Nous Portal route uses one sign-in for a model plus web search, image generation, text-to-speech and a browser tool. If you'd rather use your own API key, choose your provider in the wizard.</p>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">4</div>
+          <h3>Pick your model</h3>
+        </div>
+        <pre class="prompt-block">hermes model    # choose or change provider and model at any time</pre>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">5</div>
+          <h3>Start chatting</h3>
+        </div>
+        <pre class="prompt-block">hermes --tui    # the modern terminal interface (recommended)
+hermes          # the classic command line
+hermes -c       # carry on your last conversation</pre>
+        <p style="margin-top:0.8rem;">Check that it replies without errors, can use a tool when it needs to, and keeps track across several messages. Then close it and run <code>hermes -c</code> to make sure it picks up where you left off.</p>
+      </div>
+
+      <!-- SAFETY -->
+      <h2 id="safety">
+        <span class="h2-icon" style="background:#fee2e2;">🛡️</span>
+        Make it safe before you connect anything real
+      </h2>
+
+      <p>An agent that can run commands, read files and send messages is powerful — which is exactly why you should set it up carefully. Do these before connecting your email, accounts or chat apps.</p>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num sec-num">6</div>
+          <h3>Run commands in a sandbox</h3>
+        </div>
+        <pre class="prompt-block">hermes config set terminal.backend docker   # run commands inside Docker
+hermes config set terminal.backend ssh      # or on a separate server</pre>
+        <p style="margin-top:0.8rem;">With Docker, Hermes's commands run in an isolated container instead of directly on your computer. Cloud sandboxes like Modal and Daytona are also available, and hibernate when idle.</p>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num sec-num">7</div>
+          <h3>Turn on only the tools you need</h3>
+        </div>
+        <pre class="prompt-block">hermes tools    # see and switch tools on or off</pre>
+        <p style="margin-top:0.8rem;">The setup wizard's "Blank Slate" option starts with most tools switched off, so you add only what you trust. Keep command approvals on, and read what Hermes wants to do before you say yes.</p>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num sec-num">8</div>
+          <h3>Keep secrets in the right place</h3>
+        </div>
+        <p>API keys and bot tokens belong in <code>~/.hermes/.env</code>, set with <code>hermes config set</code> — never pasted into chats or into <code>config.yaml</code>. Use a separate API key for Hermes with a spending limit, so a runaway task can't run up a big bill.</p>
+      </div>
+
+      <div class="warning">
+        <span style="font-size:16px;flex-shrink:0;">⚠️</span>
+        <p><strong>Prompt injection applies here too.</strong> If Hermes reads emails or web pages and can also take actions, hidden instructions in that content could try to steer it. See the <a href="guide-ai-security-basics.html"><strong>AI Security Basics</strong></a> guide for how this works and how to limit the risk.</p>
+      </div>
+
+      <!-- GATEWAY -->
+      <h2 id="gateway">
+        <span class="h2-icon" style="background:#ffe0ec;">💬</span>
+        Connect a chat app
+      </h2>
+
+      <p>Once chatting in the terminal works, connect a messaging app so you can reach Hermes from your phone.</p>
+
+      <pre class="prompt-block">hermes gateway setup     # walks you through Telegram, Discord, Slack and others
+hermes gateway status    # check it's running</pre>
+
+      <div class="tip">
+        <span style="font-size:16px;flex-shrink:0;">💡</span>
+        <p>Start with <strong>Telegram</strong> — it's the quickest to set up. Make sure the gateway's <strong>allowlist</strong> includes only your own account. An incomplete setup can leave your bot open to anyone who finds it.</p>
+      </div>
+
+      <!-- SKILLS & MEMORY -->
+      <h2 id="skills">
+        <span class="h2-icon" style="background:#d4f5e2;">🧠</span>
+        Skills and memory — how Hermes learns
+      </h2>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">9</div>
+          <h3>Skills it writes itself</h3>
+        </div>
+        <p>When Hermes finishes something complex, it can save the method as a <strong>skill</strong> — a short instruction file — and improve it the next time. Skills use the open <a href="https://agentskills.io" target="_blank" rel="noopener noreferrer">agentskills.io</a> format, so you can read them, edit them and share them. You can also install community skills from hubs, but review each one first: a skill is effectively code your agent will follow.</p>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num">10</div>
+          <h3>What it remembers</h3>
+        </div>
+        <p>Hermes keeps two small notes files — one about your work and environment, one about you and your preferences — plus a searchable history of past sessions it can recall from. You can shape its personality and tone with a <code>SOUL.md</code> file. Everything is stored in <code>~/.hermes/</code> on the machine it runs on.</p>
+      </div>
+
+      <!-- USE CASES -->
+      <h2 id="use-cases">
+        <span class="h2-icon" style="background:#ddeeff;">🛠️</span>
+        Things to try
+      </h2>
+
+      <ul class="checklist">
+        <li><span class="check-circle">→</span> <span>"What can you do, and which tools do you have switched on?"</span></li>
+        <li><span class="check-circle">→</span> <span>"Every weekday at 8am, send me a briefing in Telegram with the top Microsoft 365 and Azure service updates."</span></li>
+        <li><span class="check-circle">→</span> <span>"Check my GitHub repos for open pull requests and summarise them." — then run it again next week and see how its skill improves.</span></li>
+        <li><span class="check-circle">→</span> <span>"Write a Python script that exports our Intune device list to CSV, test it in the sandbox, and save it as a skill."</span></li>
+        <li><span class="check-circle">→</span> <span>"Research the latest NCSC guidance on AI and save a one-page summary to a file."</span></li>
+      </ul>
+
+      <!-- COMMANDS -->
+      <h2 id="commands">
+        <span class="h2-icon" style="background:#f0e8ff;">⌨️</span>
+        Useful commands
+      </h2>
+
+      <table class="ref-table">
+        <thead>
+          <tr><th style="width:230px;">Command</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>hermes --tui</code></td><td>Start chatting in the terminal interface</td></tr>
+          <tr><td><code>hermes -c</code></td><td>Continue your last conversation</td></tr>
+          <tr><td><code>hermes model</code></td><td>Change provider or model</td></tr>
+          <tr><td><code>hermes tools</code></td><td>Switch tools on or off</td></tr>
+          <tr><td><code>hermes gateway setup</code></td><td>Connect Telegram, Discord, Slack and other apps</td></tr>
+          <tr><td><code>hermes sessions list</code></td><td>See past sessions</td></tr>
+          <tr><td><code>hermes update</code></td><td>Update to the latest version</td></tr>
+          <tr><td><code>hermes doctor</code></td><td>Diagnose problems — run this first if something's wrong</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip">
+        <span style="font-size:16px;flex-shrink:0;">🩺</span>
+        <p><strong>Something not working?</strong> Try these in order: <code>hermes doctor</code>, then <code>hermes model</code>, <code>hermes setup</code> and <code>hermes gateway status</code>.</p>
+      </div>
+
+      <!-- NEXT -->
+      <h2 id="next">
+        <span class="h2-icon" style="background:#d4f5e2;">🚀</span>
+        What next?
+      </h2>
+      <ul class="checklist">
+        <li><span class="check-circle">→</span> <span>Trying to choose between agents? Read <a href="guide-hermes-vs-openclaw.html"><strong>Hermes Agent vs OpenClaw</strong></a></span></li>
+        <li><span class="check-circle">→</span> <span>Read the official <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noopener noreferrer"><strong>Hermes Agent documentation</strong></a></span></li>
+        <li><span class="check-circle">→</span> <span>Browse the source on <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a></span></li>
+        <li><span class="check-circle">→</span> <span>Explore <a href="index.html#agents"><strong>Agents &amp; Swarms</strong></a> on this hub for more agent guides</span></li>
+      </ul>
+
+      <div class="success-box">
+        <span style="font-size:16px;flex-shrink:0;">🎉</span>
+        <p>Start small: one sandbox, one model, one chat app and a couple of tools. Let Hermes learn your routine tasks, review the skills it writes, and widen its access only when you trust it.</p>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="guide-sidebar">
+
+      <div class="sidebar-card">
+        <h4>Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#what"><span class="toc-dot"></span>What is Hermes Agent?</a></li>
+          <li><a href="#before"><span class="toc-dot"></span>Before you start</a></li>
+          <li><a href="#install"><span class="toc-dot"></span>Installation</a></li>
+          <li><a href="#first-run"><span class="toc-dot"></span>First run</a></li>
+          <li><a href="#safety"><span class="toc-dot"></span>Make it safe</a></li>
+          <li><a href="#gateway"><span class="toc-dot"></span>Connect a chat app</a></li>
+          <li><a href="#skills"><span class="toc-dot"></span>Skills &amp; memory</a></li>
+          <li><a href="#use-cases"><span class="toc-dot"></span>Things to try</a></li>
+          <li><a href="#commands"><span class="toc-dot"></span>Useful commands</a></li>
+          <li><a href="#next"><span class="toc-dot"></span>What next?</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Difficulty</h4>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:6px;">Intermediate</p>
+        <div class="difficulty-bar">
+          <div class="diff-dot diff-filled"></div>
+          <div class="diff-dot diff-filled"></div>
+          <div class="diff-dot diff-filled"></div>
+          <div class="diff-dot diff-empty"></div>
+          <div class="diff-dot diff-empty"></div>
+        </div>
+      </div>
+
+      <div class="score-widget">
+        <h4>✅ Setup checklist</h4>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Installed and chatting in the terminal</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Model and API key connected</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Commands running in a sandbox</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Only the tools I need switched on</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> API key has a spending limit</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Chat app connected with an allowlist</div>
+        <div class="score-result" id="score-result"></div>
+      </div>
+
+      <div class="sidebar-card" style="margin-top:1rem;">
+        <h4>Useful Links</h4>
+        <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noopener noreferrer" class="resource-link">📚 Hermes Agent docs</a>
+        <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener noreferrer" class="resource-link">💻 Hermes on GitHub</a>
+        <a href="guide-hermes-vs-openclaw.html" class="resource-link">⚖️ Hermes vs OpenClaw</a>
+        <a href="guide-ai-security-basics.html" class="resource-link">🛡️ AI Security Basics</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer>
+    <p>Part of <a href="index.html">Tony's Training Hub</a> &mdash; built with ❤️ and Claude</p>
+  </footer>
+
+  <script>
+    function toggleCheck(el) {
+      el.classList.toggle('checked');
+      el.textContent = el.classList.contains('checked') ? '✓' : '';
+      updateScore();
+    }
+
+    function updateScore() {
+      const checks = document.querySelectorAll('.score-check');
+      const total = checks.length;
+      const ticked = [...checks].filter(c => c.classList.contains('checked')).length;
+      const result = document.getElementById('score-result');
+      if (ticked === 0) { result.style.display = 'none'; return; }
+      result.style.display = 'block';
+      const pct = Math.round((ticked / total) * 100);
+      const msgs = [
+        [100, '🎉 All set — Hermes is ready and safely set up.'],
+        [80, '👍 Nearly there — finish the last steps.'],
+        [60, '⚙️ Good progress — keep going.'],
+        [1, '🚀 Work down the list as you set up.']
+      ];
+      result.textContent = (msgs.find(([t]) => pct >= t) || msgs[3])[1];
+    }
+  </script>
+
+</body>
+</html>

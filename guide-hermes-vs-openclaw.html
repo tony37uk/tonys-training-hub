@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comparison Guide: Hermes Agent vs OpenClaw | Tony's Training Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f4f6fb;
+      color: #1a1a2e;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e8eaf0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(79,142,247,0.07);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .nav-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #4f8ef7;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 13px;
+      font-weight: 700;
+      color: #6b7280;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: #a259f7; }
+
+    /* ── HERO ── */
+    .guide-hero {
+      background: linear-gradient(135deg, #a259f7 0%, #4f8ef7 60%, #2ecc71 100%);
+      padding: 3rem 2rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .guide-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .guide-hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+    .guide-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .guide-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .guide-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .guide-layout {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ── CONTENT ── */
+    .guide-content { min-width: 0; }
+
+    .guide-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 2.25rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .guide-content h2:first-child { margin-top: 0; }
+    .h2-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .guide-content p {
+      font-size: 15px;
+      color: #374151;
+      margin-bottom: 1rem;
+    }
+
+    /* ── PRINCIPLE CARDS ── */
+    .principle {
+      background: #fff;
+      border: 1px solid #e8eaf0;
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .principle-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0.75rem;
+    }
+    .principle-num {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a259f7, #4f8ef7);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .principle h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .principle p {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 0.75rem;
+      line-height: 1.65;
+    }
+    .principle p:last-child { margin-bottom: 0; }
+
+    /* ── BEFORE / AFTER COMPARISON ── */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 0.75rem 0;
+    }
+    .compare-box {
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+    }
+    .compare-bad  { background: #fff1f2; border: 1px solid #fecdd3; }
+    .compare-good { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .compare-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .compare-bad  .compare-label { color: #be123c; }
+    .compare-good .compare-label { color: #15803d; }
+    .compare-box p {
+      font-size: 13px !important;
+      color: #374151 !important;
+      margin: 0 !important;
+      font-style: italic;
+      line-height: 1.55 !important;
+    }
+
+    /* ── PROMPT ANATOMY ── */
+    .anatomy-block {
+      background: #1e1e2e;
+      border-radius: 14px;
+      padding: 1.4rem 1.5rem;
+      margin: 0.75rem 0 1rem;
+      position: relative;
+    }
+    .anatomy-line {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .anatomy-line:last-child { margin-bottom: 0; }
+    .anatomy-tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 50px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .tag-role    { background: #a259f720; color: #c084fc; border: 1px solid #a259f740; }
+    .tag-context { background: #4f8ef720; color: #7dd3fc; border: 1px solid #4f8ef740; }
+    .tag-task    { background: #2ecc7120; color: #6ee7b7; border: 1px solid #2ecc7140; }
+    .tag-format  { background: #f7a52520; color: #fcd34d; border: 1px solid #f7a52540; }
+    .tag-example { background: #f7599a20; color: #f9a8d4; border: 1px solid #f7599a40; }
+    .tag-why     { background: #22d3ee20; color: #67e8f9; border: 1px solid #22d3ee40; }
+    .prompt-block {
+      background: #1e1e2e;
+      color: #e2e8f0;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin: 0.5rem 0 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .principle code, .guide-content > p code { background: #f3f0ff; color: #5b21b6; padding: 1px 6px; border-radius: 5px; font-size: 13px; }
+    .anatomy-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .tip, .warning, .success-box, .info-box {
+      border-radius: 12px;
+      padding: 1rem 1.1rem;
+      margin: 1rem 0;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .tip         { background: #eff6ff; border-left: 4px solid #4f8ef7; color: #1e3a5f; }
+    .warning     { background: #fff7ed; border-left: 4px solid #f7a525; color: #7c3a00; }
+    .success-box { background: #f0fdf4; border-left: 4px solid #2ecc71; color: #14532d; }
+    .info-box    { background: #faf5ff; border-left: 4px solid #a259f7; color: #4a1d96; }
+    .tip p, .warning p, .success-box p, .info-box p { font-size: 14px !important; color: inherit !important; margin: 0 !important; }
+
+    /* ── QUICK REFERENCE TABLE ── */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 0.75rem 0 1rem;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e8eaf0;
+    }
+    .ref-table th {
+      background: #f8f9ff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #6b7280;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid #e8eaf0;
+    }
+    .ref-table td {
+      padding: 10px 14px;
+      color: #374151;
+      border-bottom: 1px solid #f0f2f7;
+      vertical-align: top;
+    }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table tr:hover td { background: #f8f9ff; }
+    .ref-table code {
+      background: #f0f4ff;
+      color: #4f8ef7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; margin: 0.75rem 0 1rem; }
+    .checklist li {
+      font-size: 14px;
+      color: #374151;
+      padding: 7px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      border-bottom: 1px dashed #e8eaf0;
+      line-height: 1.55;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #d4f5e2;
+      color: #1a7a42;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    /* ── SIDEBAR ── */
+    .guide-sidebar { position: sticky; top: 78px; }
+    .sidebar-card {
+      background: #fff;
+      border: 1px solid #e8eaf0;
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar-card h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .toc-list { list-style: none; }
+    .toc-list li { margin-bottom: 6px; }
+    .toc-list a {
+      font-size: 13px;
+      color: #6b7280;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.15s;
+      line-height: 1.4;
+    }
+    .toc-list a:hover { color: #a259f7; }
+    .toc-dot { width: 6px; height: 6px; border-radius: 50%; background: #e8eaf0; flex-shrink: 0; }
+
+    .resource-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #4f8ef7;
+      text-decoration: none;
+      padding: 6px 0;
+      border-bottom: 1px solid #f0f0f0;
+      transition: color 0.15s;
+    }
+    .resource-link:last-child { border-bottom: none; }
+    .resource-link:hover { color: #a259f7; }
+
+    .difficulty-bar { display: flex; gap: 5px; margin-top: 6px; }
+    .diff-dot { width: 28px; height: 8px; border-radius: 50px; }
+    .diff-filled { background: #a259f7; }
+    .diff-empty  { background: #e8eaf0; }
+
+    /* ── PROMPT SCORE WIDGET ── */
+    .score-widget {
+      background: linear-gradient(135deg, #faf5ff, #eff6ff);
+      border: 1px solid #e0d7ff;
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .score-widget h4 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a1d96;
+      margin-bottom: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .score-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: #4b5563;
+    }
+    .score-item:last-child { margin-bottom: 0; }
+    .score-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: #e0d7ff;
+      border: 1px solid #c4b5fd;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: #7c3aed;
+      transition: background 0.15s;
+    }
+    .score-check.checked { background: #a259f7; border-color: #a259f7; color: #fff; }
+    .score-result {
+      margin-top: 12px;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #4a1d96;
+      padding: 8px;
+      background: rgba(162,89,247,0.1);
+      border-radius: 8px;
+      display: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 13px;
+      color: #9ca3af;
+      border-top: 1px solid #e8eaf0;
+      background: #fff;
+    }
+    footer a { color: #a259f7; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .guide-layout { grid-template-columns: 1fr; padding: 1.5rem 1rem 3rem; }
+      .guide-sidebar { position: static; }
+      .guide-hero { padding: 2rem 1rem 2.5rem; }
+      .compare { grid-template-columns: 1fr; }
+    }
+
+    /* AI Security guide */
+    .guide-hero { background: linear-gradient(135deg, #0d9488 0%, #4338ca 50%, #ea580c 100%); }
+    .table-wrap { overflow-x: auto; margin: 1.2rem 0; border-radius: 12px; }
+    .table-wrap .ref-table { margin: 0; min-width: 560px; }
+    .vs-table td:first-child { width: 150px; }
+    .vs-h { color: #0f766e !important; }
+    .vs-o { color: #c2410c !important; }
+    .vs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 1.2rem 0; }
+    .vs-card { border-radius: 14px; padding: 1.2rem 1.3rem; border: 1px solid; }
+    .vs-card h3 { margin: 0 0 0.6rem; font-family: 'Poppins', sans-serif; font-size: 1.05rem; }
+    .vs-card p { margin: 0 0 0.6rem; font-size: 0.95rem; line-height: 1.6; }
+    .vs-card p:last-child { margin-bottom: 0; }
+    .vs-card .checklist { margin: 0; }
+    .vs-card-h { background: #effcf9; border-color: #99e6d8; }
+    .vs-card-h h3 { color: #115e59; }
+    .vs-card-o { background: #fff4ec; border-color: #fdc9a4; }
+    .vs-card-o h3 { color: #9a3412; }
+    .fit { display: inline-block; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+    .fit-h { background: #ccfbf1; color: #115e59; }
+    .fit-o { background: #ffedd5; color: #9a3412; }
+    .fit-both { background: #ede9fe; color: #5b21b6; }
+    .scroll-hint { display: none; font-size: 13px; font-weight: 700; color: #6b7280; margin: 0.8rem 0 -0.6rem; }
+    @media (max-width: 640px) { .scroll-hint { display: block; } }
+    .principle-num.sec-num { background: linear-gradient(135deg, #dc2626, #9f1239); }
+    .tl { display: inline-block; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+    .tl-green { background: #dcfce7; color: #166534; }
+    .tl-amber { background: #fef3c7; color: #92400e; }
+    .tl-red   { background: #fee2e2; color: #991b1b; }
+    .ref-table td { vertical-align: top; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">🚀 Tony's Training Hub</a>
+      <a href="index.html#agents" class="nav-back">← Back to Agents &amp; Swarms</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="guide-hero">
+    <div class="guide-hero-inner">
+      <div class="guide-badge">⚖️ Comparison Guide</div>
+      <h1>Hermes Agent vs OpenClaw</h1>
+      <div class="guide-meta">
+        <span>⏱️ 10–15 minutes</span>
+        <span>🟢 Beginner friendly</span>
+        <span>🤖 Two open-source personal agents</span>
+        <span>🗓️ Updated November 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN -->
+  <div class="guide-layout">
+
+    <article class="guide-content">
+
+      <p>Hermes Agent and OpenClaw are the two most popular open-source personal AI agents. Both are free, run on your own machine or server, connect to the chat apps you already use, and can take real actions for you. But they're built around different ideas, and the right choice depends on how you want to work.</p>
+
+      <div class="info-box">
+        <span style="font-size:16px;flex-shrink:0;">💡</span>
+        <p><strong>The short version:</strong> Hermes is a <strong>personal agent that learns</strong> — it gets better at your repeated tasks over time. OpenClaw is a <strong>gateway that connects everything</strong> — your apps, devices and even your whole team — to one assistant.</p>
+      </div>
+
+      <div class="warning">
+        <span style="font-size:16px;flex-shrink:0;">🗓️</span>
+        <p><strong>Accurate as of November 2026</strong> (Hermes Agent v0.23, OpenClaw v2026.11). Both projects release new versions every few weeks, so check their docs for the latest features.</p>
+      </div>
+
+      <!-- AT A GLANCE -->
+      <h2 id="glance">
+        <span class="h2-icon" style="background:#ddeeff;">⚖️</span>
+        At a glance
+      </h2>
+
+      <p class="scroll-hint">Swipe the table sideways to see both columns →</p>
+      <div class="table-wrap">
+      <table class="ref-table vs-table">
+        <thead>
+          <tr><th></th><th class="vs-h">⚕️ Hermes Agent</th><th class="vs-o">🦞 OpenClaw</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Made by</strong></td><td>Nous Research (an AI lab)</td><td>OpenClaw Foundation (independent non-profit)</td></tr>
+          <tr><td><strong>Big idea</strong></td><td>One agent that improves the more you use it</td><td>One gateway connecting many apps, devices and people</td></tr>
+          <tr><td><strong>Licence &amp; cost</strong></td><td>MIT, free. Optional paid Nous Portal for models and tools</td><td>MIT, free. No paid tier — bring your own model</td></tr>
+          <tr><td><strong>Built with</strong></td><td>Python</td><td>TypeScript (Node.js)</td></tr>
+          <tr><td><strong>Skills</strong></td><td>Writes and improves its own skills from experience; agentskills.io format</td><td>Skills you write or install from the ClawHub marketplace; can also build skills on request</td></tr>
+          <tr><td><strong>Memory</strong></td><td>Two small curated notes files plus searchable session history</td><td>Plain Markdown files in its workspace; extra search via plugins</td></tr>
+          <tr><td><strong>Chat apps</strong></td><td>20+ platforms, including Telegram, Slack, Discord, WhatsApp, Signal and Teams</td><td>20+ channels, plus native apps for macOS, iOS, Android, Windows and Linux</td></tr>
+          <tr><td><strong>Teams &amp; multiple agents</strong></td><td>Named Bots with their own memory and skills that can work together; isolated subagents</td><td>One gateway can serve a single person or a shared team, with multi-agent routing</td></tr>
+          <tr><td><strong>Models</strong></td><td>Nous Portal, OpenRouter, OpenAI or any compatible endpoint</td><td>Claude, OpenAI and local models, swapped in as plugins</td></tr>
+          <tr><td><strong>Where commands run</strong></td><td>Six built-in backends: local, Docker, SSH, Modal, Daytona, Vercel Sandbox</td><td>On your machine by default; optional sandbox backends</td></tr>
+          <tr><td><strong>Safety defaults</strong></td><td>Command approvals on by default</td><td>Sandbox off by default</td></tr>
+          <tr><td><strong>Desktop app</strong></td><td>Hermes Desktop for Windows and macOS</td><td>Browser-based Control UI plus native apps</td></tr>
+          <tr><td><strong>Community</strong></td><td>Large and growing fast</td><td>Larger, with a much bigger skills marketplace</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <!-- PHILOSOPHY -->
+      <h2 id="philosophy">
+        <span class="h2-icon" style="background:#f0e8ff;">🧭</span>
+        Two different philosophies
+      </h2>
+
+      <div class="vs-grid">
+        <div class="vs-card vs-card-h">
+          <h3>⚕️ Hermes: depth</h3>
+          <p>Hermes is built around <strong>one dependable agent</strong>. When it completes a complex task, it records the method as a skill and refines it each time. Over weeks, it becomes noticeably better at <em>your</em> routine work — your reports, your checks, your research style.</p>
+          <p><strong>Feels like:</strong> training a capable assistant who keeps notes.</p>
+        </div>
+        <div class="vs-card vs-card-o">
+          <h3>🦞 OpenClaw: breadth</h3>
+          <p>OpenClaw is built around a <strong>gateway</strong> that sits in the middle of your chat apps, devices, tools and people. Its strength is reach: more integrations, native apps everywhere, and a huge marketplace of ready-made skills.</p>
+          <p><strong>Feels like:</strong> running a control centre that connects everything.</p>
+        </div>
+      </div>
+
+      <!-- SCENARIOS -->
+      <h2 id="scenarios">
+        <span class="h2-icon" style="background:#d4f5e2;">🧪</span>
+        Which is better for…
+      </h2>
+
+      <table class="ref-table">
+        <thead>
+          <tr><th>Scenario</th><th style="width:140px;">Better fit</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A morning briefing in Telegram</td><td><span class="fit fit-both">Either</span></td><td>Both have scheduled jobs and Telegram support.</td></tr>
+          <tr><td>The same weekly report or check, done better each time</td><td><span class="fit fit-h">Hermes</span></td><td>Its learning loop turns repeated work into improving skills.</td></tr>
+          <tr><td>A shared assistant for your whole team in Slack</td><td><span class="fit fit-o">OpenClaw</span></td><td>Built for one gateway serving several people and channels.</td></tr>
+          <tr><td>Using an assistant from native phone and desktop apps</td><td><span class="fit fit-o">OpenClaw</span></td><td>Native apps for macOS, iOS, Android, Windows and Linux.</td></tr>
+          <tr><td>Running cheaply in the cloud, isolated from your laptop</td><td><span class="fit fit-h">Hermes</span></td><td>Cloud sandboxes like Modal and Daytona hibernate when idle.</td></tr>
+          <tr><td>Getting started fastest with ready-made skills</td><td><span class="fit fit-o">OpenClaw</span></td><td>Bigger community and skills marketplace — but review every skill.</td></tr>
+          <tr><td>Coding, research and data workflows in Python</td><td><span class="fit fit-h">Hermes</span></td><td>Python-based, with subagents and programmatic tool calling.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- SECURITY -->
+      <h2 id="security">
+        <span class="h2-icon" style="background:#fee2e2;">🛡️</span>
+        Security: what to know about both
+      </h2>
+
+      <p>Both agents can read your files, run commands and act on your accounts — so both need the same care. Neither is safe "out of the box" for work accounts.</p>
+
+      <div class="vs-grid">
+        <div class="vs-card vs-card-h">
+          <h3>⚕️ Hermes</h3>
+          <p>Command approvals are switched on by default, and it makes it easy to run commands in Docker or a remote sandbox. But its own documentation is clear that approvals are an aid, not a full security boundary.</p>
+        </div>
+        <div class="vs-card vs-card-o">
+          <h3>🦞 OpenClaw</h3>
+          <p>The sandbox is off by default, so commands run on your machine unless you change it. Its ClawHub marketplace has had malicious skills — one audit in February 2026 found hundreds — so only install skills you've reviewed.</p>
+        </div>
+      </div>
+
+      <div class="principle">
+        <div class="principle-header">
+          <div class="principle-num sec-num">✓</div>
+          <h3>Whichever you pick</h3>
+        </div>
+        <ul class="checklist" style="margin-top:0.5rem;">
+          <li><span class="check-circle">→</span> <span>Run it in a container or on a separate server — not on a laptop holding your work credentials.</span></li>
+          <li><span class="check-circle">→</span> <span>Restrict who can message it with an allowlist.</span></li>
+          <li><span class="check-circle">→</span> <span>Review every community skill before installing it.</span></li>
+          <li><span class="check-circle">→</span> <span>Use a dedicated API key with a spending limit.</span></li>
+          <li><span class="check-circle">→</span> <span>Read the <a href="guide-ai-security-basics.html"><strong>AI Security Basics</strong></a> guide — especially the sections on prompt injection and agents.</span></li>
+        </ul>
+      </div>
+
+      <!-- CHOOSE -->
+      <h2 id="choose">
+        <span class="h2-icon" style="background:#fff0d4;">🎯</span>
+        So which should you choose?
+      </h2>
+
+      <div class="vs-grid">
+        <div class="vs-card vs-card-h">
+          <h3>Choose Hermes if…</h3>
+          <ul class="checklist">
+            <li><span class="check-circle">→</span> <span>You want one personal agent to run for months</span></li>
+            <li><span class="check-circle">→</span> <span>You have repeated tasks you'd like it to get better at</span></li>
+            <li><span class="check-circle">→</span> <span>You want to run it in a cloud sandbox or on a small server</span></li>
+            <li><span class="check-circle">→</span> <span>You're comfortable in the terminal, or with Python</span></li>
+          </ul>
+        </div>
+        <div class="vs-card vs-card-o">
+          <h3>Choose OpenClaw if…</h3>
+          <ul class="checklist">
+            <li><span class="check-circle">→</span> <span>You want something useful quickly with lots of ready-made skills</span></li>
+            <li><span class="check-circle">→</span> <span>You want to reach it from native apps on every device</span></li>
+            <li><span class="check-circle">→</span> <span>Several people or a whole team will share it</span></li>
+            <li><span class="check-circle">→</span> <span>You prefer a bigger community and more tutorials</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tip">
+        <span style="font-size:16px;flex-shrink:0;">💡</span>
+        <p><strong>Still not sure?</strong> Try both. Install each in a container with no real credentials, give them the same few tasks for a week, and see which fits how you work.</p>
+      </div>
+
+      <!-- SWITCHING -->
+      <h2 id="switching">
+        <span class="h2-icon" style="background:#e8faf7;">🔄</span>
+        Switching between them
+      </h2>
+
+      <p>You're not locked in. Each project can import from the other, bringing across settings, memory and skills.</p>
+
+      <table class="ref-table">
+        <thead>
+          <tr><th>Moving…</th><th>How</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OpenClaw → Hermes</td><td>Install the importer plugin with <code>hermes plugins install agent-importers</code>, then run <code>hermes import-agent openclaw</code>. It previews what it will bring across before importing.</td></tr>
+          <tr><td>Hermes → OpenClaw</td><td>Run <code>openclaw migrate</code>, which includes a Hermes migration option and writes a backup before changing anything.</td></tr>
+        </tbody>
+      </table>
+
+      <!-- NEXT -->
+      <h2 id="next">
+        <span class="h2-icon" style="background:#d4f5e2;">🚀</span>
+        What next?
+      </h2>
+      <ul class="checklist">
+        <li><span class="check-circle">→</span> <span>Set up Hermes with <a href="guide-hermes-agent.html"><strong>Getting Started with Hermes Agent</strong></a></span></li>
+        <li><span class="check-circle">→</span> <span>Set up OpenClaw with <a href="guide-openclaw.html"><strong>Getting Started with OpenClaw</strong></a></span></li>
+        <li><span class="check-circle">→</span> <span>Read the official <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noopener noreferrer"><strong>Hermes docs</strong></a> and <a href="https://docs.openclaw.ai" target="_blank" rel="noopener noreferrer"><strong>OpenClaw docs</strong></a></span></li>
+        <li><span class="check-circle">→</span> <span>Explore <a href="index.html#agents"><strong>Agents &amp; Swarms</strong></a> on this hub</span></li>
+      </ul>
+
+      <div class="success-box">
+        <span style="font-size:16px;flex-shrink:0;">🎉</span>
+        <p>There's no wrong answer — both are capable, free and open source. Pick the one that matches how you work, set it up safely, and start small.</p>
+      </div>
+
+    </article>
+
+    <!-- SIDEBAR -->
+    <aside class="guide-sidebar">
+
+      <div class="sidebar-card">
+        <h4>Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#glance"><span class="toc-dot"></span>At a glance</a></li>
+          <li><a href="#philosophy"><span class="toc-dot"></span>Two philosophies</a></li>
+          <li><a href="#scenarios"><span class="toc-dot"></span>Which is better for…</a></li>
+          <li><a href="#security"><span class="toc-dot"></span>Security</a></li>
+          <li><a href="#choose"><span class="toc-dot"></span>Which to choose</a></li>
+          <li><a href="#switching"><span class="toc-dot"></span>Switching between them</a></li>
+          <li><a href="#next"><span class="toc-dot"></span>What next?</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Difficulty</h4>
+        <p style="font-size:13px;color:#6b7280;margin-bottom:6px;">Beginner</p>
+        <div class="difficulty-bar">
+          <div class="diff-dot diff-filled"></div>
+          <div class="diff-dot diff-filled"></div>
+          <div class="diff-dot diff-empty"></div>
+          <div class="diff-dot diff-empty"></div>
+          <div class="diff-dot diff-empty"></div>
+        </div>
+      </div>
+
+      <div class="score-widget">
+        <h4>✅ Before you install either</h4>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Container or separate server ready</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Dedicated API key with a spending limit</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Allowlist planned for chat apps</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> Plan to review every skill</div>
+        <div class="score-item"><div class="score-check" onclick="toggleCheck(this)"></div> No real work credentials on the test machine</div>
+        <div class="score-result" id="score-result"></div>
+      </div>
+
+      <div class="sidebar-card" style="margin-top:1rem;">
+        <h4>Useful Links</h4>
+        <a href="guide-hermes-agent.html" class="resource-link">⚕️ Hermes Agent guide</a>
+        <a href="guide-openclaw.html" class="resource-link">🦞 OpenClaw guide</a>
+        <a href="https://hermes-agent.nousresearch.com/docs" target="_blank" rel="noopener noreferrer" class="resource-link">📚 Hermes docs</a>
+        <a href="https://docs.openclaw.ai" target="_blank" rel="noopener noreferrer" class="resource-link">📚 OpenClaw docs</a>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer>
+    <p>Part of <a href="index.html">Tony's Training Hub</a> &mdash; built with ❤️ and Claude</p>
+  </footer>
+
+  <script>
+    function toggleCheck(el) {
+      el.classList.toggle('checked');
+      el.textContent = el.classList.contains('checked') ? '✓' : '';
+      updateScore();
+    }
+
+    function updateScore() {
+      const checks = document.querySelectorAll('.score-check');
+      const total = checks.length;
+      const ticked = [...checks].filter(c => c.classList.contains('checked')).length;
+      const result = document.getElementById('score-result');
+      if (ticked === 0) { result.style.display = 'none'; return; }
+      result.style.display = 'block';
+      const pct = Math.round((ticked / total) * 100);
+      const msgs = [
+        [100, '🛡️ Ready — install whichever fits you best.'],
+        [80, '👍 Nearly ready — one more step.'],
+        [60, '⚙️ Good start — tick off the rest first.'],
+        [1, '🔐 Set these up before you install.']
+      ];
+      result.textContent = (msgs.find(([t]) => pct >= t) || msgs[3])[1];
+    }
+  </script>
+
+</body>
+</html>
